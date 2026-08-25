@@ -63,11 +63,14 @@
   .logo span{color:var(--accent)}
   .logo small{display:block;font-family:var(--sans);font-size:.68rem;letter-spacing:.24em;color:var(--accent);font-weight:600;margin-top:3px}
   .logo img{height:58px;width:auto;display:block}
-  .topbar{background:var(--slate);color:#dfe6ea;font-size:.82rem}
-  .topbar-in{display:flex;justify-content:space-between;align-items:center;height:36px}
+  .topbar{background:var(--slate);color:#dfe6ea;font-size:.85rem}
+  .topbar-in{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;
+    gap:8px 18px;min-height:46px;padding-top:6px;padding-bottom:6px}
   .topbar a{color:#fff;font-weight:600}
   .topbar a:hover{color:var(--accent)}
-  .tb-contact{display:flex;gap:18px;align-items:center}
+  .tb-contact{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center}
+  .tb-phone{font-size:1.1rem;font-weight:800;letter-spacing:.01em;white-space:nowrap}
+  .tb-reply{font-size:.82rem;color:#cdd8de;white-space:nowrap}
   .tb-book{background:var(--accent);color:#fff!important;padding:5px 14px;border-radius:5px;font-weight:600}
   .tb-book:hover{background:var(--accent-dk);color:#fff!important}
   .nav-links{display:flex;gap:26px;align-items:center}
@@ -78,7 +81,7 @@
   .hamburger{display:none;background:none;border:none;font-size:1.6rem;cursor:pointer;color:var(--ink)}
 
   /* hero */
-  .hero{margin-top:112px;min-height:78vh;display:flex;align-items:center;color:#fff;text-align:center;
+  .hero{margin-top:var(--header-h,152px);min-height:70vh;display:flex;align-items:center;color:#fff;text-align:center;
     background:linear-gradient(rgba(20,28,33,.55),rgba(20,28,33,.55)),url('images/hero.jpg') center/cover no-repeat}
   .hero-kick{color:#fff;font-family:var(--sans);font-size:.85rem;letter-spacing:.28em;text-transform:uppercase;font-weight:600;margin-bottom:16px;text-shadow:0 2px 10px rgba(0,0,0,.45)}
   .hero h1{color:#fff;font-size:3.1rem;margin-bottom:14px;text-shadow:0 2px 16px rgba(0,0,0,.3)}
@@ -114,10 +117,92 @@
   .fp-imgs{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:34px}
   .fp-imgs img{border:1px solid var(--line);border-radius:8px;background:#fff;padding:8px}
 
+
+  :target{scroll-margin-top:calc(var(--header-h,152px) + 12px)}
+
+  /* move-in special */
+  .special{display:block;max-width:680px;margin:0 auto 20px;border-radius:10px;overflow:hidden;
+    border:2px solid #f0c15a;background:rgba(255,247,224,.97);color:#4a3a12;text-align:center}
+  .special .special-tag{display:block;background:#f0c15a;color:#3b2d08;font-weight:800;
+    font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;padding:7px 12px}
+  .special .special-body{display:block;padding:13px 16px;font-size:1rem;font-weight:600;line-height:1.45}
+  .special .special-sub{display:block;padding:0 16px 12px;font-size:.82rem;font-weight:500;opacity:.8}
+
+  /* hero product shortcuts */
+  .hero-cats{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:0 auto 20px;max-width:680px}
+  .hero-cats a{flex:1 1 190px;background:rgba(255,255,255,.14);border:1.5px solid rgba(255,255,255,.6);
+    color:#fff;border-radius:8px;padding:12px 10px;font-weight:700;font-size:1rem;line-height:1.2}
+  .hero-cats a span{display:block;font-weight:500;font-size:.8rem;opacity:.88;margin-top:3px}
+  .hero-cats a:hover{background:var(--accent);border-color:var(--accent)}
+
+  /* product categories */
+  .homes-lede{color:var(--slate);max-width:64ch;margin-bottom:8px}
+  .cat{border:1px solid var(--line);border-radius:12px;padding:28px;margin-top:26px;background:#fff}
+  .cat-head{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:flex-start;
+    border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:22px}
+  .cat-head h3{font-family:var(--serif);font-size:1.75rem;color:var(--ink);line-height:1.2}
+  .cat-meta{color:var(--muted);font-size:.92rem;margin-top:5px}
+  .cat-price{font-family:var(--serif);font-size:1.9rem;color:var(--accent);font-weight:700;white-space:nowrap}
+  .cat-price span{font-family:var(--sans);font-size:.9rem;color:var(--muted);font-weight:500}
+  .cat-avail{display:inline-block;background:#e8f3ec;color:#1c6b3f;font-size:.78rem;font-weight:700;
+    letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:20px;margin-bottom:8px}
+  .cat-plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,340px));gap:14px;justify-content:center}
+  .cat-plans img{width:100%;height:330px;object-fit:contain;border:1px solid var(--line);border-radius:8px;background:#fff;padding:8px}
+  .cat-photos{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px}
+  .cat-photos img{width:100%;height:150px;object-fit:cover;border-radius:8px}
+  .cat-deal{background:rgba(255,247,224,.9);border-left:4px solid #f0c15a;border-radius:0 6px 6px 0;
+    padding:11px 14px;margin-top:16px;font-size:.94rem;color:#4a3a12;line-height:1.5}
+  .cat-deal b{color:#3b2d08}
+  .cat-price s{color:var(--muted);font-weight:500;font-size:.72em;margin-right:4px}
+  .cat-note{font-size:.85rem;color:var(--muted);margin-top:12px;line-height:1.55}
+  .cat-cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;align-items:center}
+  .cat-cta .btn{padding:12px 22px}
+  .cat-tourlink{display:inline-flex;align-items:center;gap:8px;font-weight:700;color:var(--accent);
+    border:1.5px solid var(--accent);border-radius:6px;padding:11px 20px;font-size:.95rem}
+  .cat-tourlink:hover{background:var(--accent);color:#fff}
+
+  /* 3d tours */
+  .tours{background:var(--ink);color:#fff}
+  .tours h2{color:#fff}
+  .tours .eyebrow{color:#e0a787}
+  .tours .lede{color:#c2cdd3;max-width:64ch;margin-bottom:24px}
+  .tour-tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}
+  .tour-tab{border:1px solid rgba(255,255,255,.28);background:transparent;color:#fff;border-radius:999px;
+    padding:10px 20px;font:inherit;font-size:.9rem;cursor:pointer;transition:background .15s,border-color .15s}
+  .tour-tab:hover{border-color:var(--accent)}
+  .tour-tab[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+  .tour-frame{position:relative;width:100%;aspect-ratio:16/9;min-height:340px;border-radius:10px;overflow:hidden;
+    background:#0f1519;border:1px solid rgba(255,255,255,.14)}
+  .tour-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .tour-note{margin-top:14px;font-size:.88rem;color:#c2cdd3}
+  .tour-note a{color:#e0a787;text-decoration:underline}
+
   /* gallery */
-  .gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:30px}
-  .gal-grid img{height:230px;width:100%;object-fit:cover;border-radius:8px}
-  .gal-grid img:first-child{grid-column:span 2;grid-row:span 2;height:472px}
+  .gal-filters{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+  .gal-filter{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;
+    padding:9px 18px;font:inherit;font-size:.88rem;cursor:pointer;transition:background .15s,border-color .15s,color .15s}
+  .gal-filter:hover{border-color:var(--accent);color:var(--accent)}
+  .gal-filter[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:600}
+  .gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
+  .gal-item{padding:0;border:0;background:none;cursor:zoom-in;border-radius:8px;overflow:hidden;display:block;line-height:0}
+  .gal-item img{height:230px;width:100%;object-fit:cover;border-radius:8px;transition:transform .3s ease}
+  .gal-item:hover img{transform:scale(1.04)}
+  .gal-item:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+  .gal-item[hidden]{display:none}
+  .gal-count{margin-top:18px;font-size:.88rem;color:var(--muted)}
+
+  /* lightbox */
+  .lb{position:fixed;inset:0;z-index:9000;background:rgba(15,21,25,.94);display:none;
+    align-items:center;justify-content:center;padding:44px 20px}
+  .lb.open{display:flex}
+  .lb img{max-width:min(1400px,94vw);max-height:82vh;object-fit:contain;border-radius:6px}
+  .lb-cap{position:absolute;left:0;right:0;bottom:20px;text-align:center;color:#e6ecef;font-size:.9rem;padding:0 60px}
+  .lb-btn{position:absolute;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:#fff;
+    width:46px;height:46px;border-radius:50%;font-size:1.4rem;line-height:1;cursor:pointer;display:grid;place-items:center}
+  .lb-btn:hover{background:var(--accent);border-color:var(--accent)}
+  .lb-prev{left:16px;top:50%;transform:translateY(-50%)}
+  .lb-next{right:16px;top:50%;transform:translateY(-50%)}
+  .lb-close{right:16px;top:16px}
 
   /* neighborhood */
   .hood{background:var(--ink);color:#fff}
@@ -163,13 +248,42 @@
     box-shadow:0 8px 26px rgba(0,0,0,.28);transition:.2s}
   .sticky-cta:hover{background:var(--accent);color:#fff}
 
+
   @media(max-width:860px){
-    .tb-addr,.tb-email{display:none}.topbar-in{justify-content:flex-end}
+    .nav{height:62px}
+    .nav-cta .btn-dark{display:none}
+    .nav-cta .btn{padding:8px 13px;font-size:.82rem}
+    .logo img{max-height:34px}
+    .hero{min-height:0;padding:22px 0 26px;text-align:center}
+    .hero-kick{display:none}
+    .hero h1{font-size:1.45rem;margin-bottom:10px}
+    .hero h1 .h1-sub{display:inline-block;font-size:1.3rem;margin-top:6px}
+    .hero p.hero-lede{display:none}
+    .hero .btn{margin:4px}
+    .special{margin-bottom:14px}
+    .special .special-body{font-size:.94rem;padding:11px 13px}
+    .hero-cats{gap:8px;margin-bottom:16px}
+    .hero-cats a{flex:1 1 100px;padding:10px 6px;font-size:.9rem}
+    .hero-cats a span{font-size:.72rem}
+    .cat{padding:20px 16px}
+    .cat-head h3{font-size:1.4rem}
+    .cat-price{font-size:1.5rem}
+    .cat-photos{grid-template-columns:1fr 1fr}
+    .cat-photos img{height:130px}
+    .cat-plans img{height:250px}
+    .cat-cta .btn,.cat-tourlink{width:100%;text-align:center;justify-content:center}
+  }
+
+  @media(max-width:860px){
+    .tb-addr{display:none}.topbar-in{justify-content:center;text-align:center;min-height:0}
+    .tb-contact{justify-content:center;width:100%;gap:4px 12px}
+    .tb-phone{font-size:1.05rem}
+    .tb-reply{font-size:.78rem}
     .nav-links{display:none}.hamburger{display:block}
-    .nav-links.open{display:flex;flex-direction:column;position:absolute;top:112px;left:0;right:0;background:#fff;padding:18px 24px;border-bottom:1px solid var(--line);gap:14px}
+    .nav-links.open{display:flex;flex-direction:column;position:absolute;top:var(--header-h,152px);left:0;right:0;background:#fff;padding:18px 24px;border-bottom:1px solid var(--line);gap:14px}
     .about-grid,.tour-grid,.hood-grid{grid-template-columns:1fr}
     .amen-grid,.plan-grid,.res-grid,.res-cards{grid-template-columns:1fr}
-    .gal-grid{grid-template-columns:1fr 1fr}.gal-grid img:first-child{grid-column:span 2;height:230px;grid-row:auto}
+    .gal-grid{grid-template-columns:1fr 1fr}
     .fp-imgs{grid-template-columns:1fr 1fr}
     .hero h1{font-size:2.2rem}
     .sticky-cta{right:14px;bottom:14px;padding:11px 18px;font-size:.88rem}
@@ -182,8 +296,8 @@
   <div class="topbar"><div class="wrap topbar-in">
     <a class="tb-addr" href="https://maps.google.com/?q=9920+Forest+Lane,+Dallas,+TX+75243" target="_blank" rel="noopener">&#128205; 9920 Forest Lane, Dallas, TX 75243</a>
     <span class="tb-contact">
-      <a class="tb-email" href="mailto:villageoaks@excella.group">&#9993; villageoaks@excella.group</a>
-      <a href="tel:+14692189998">&#128222; (469) 218-9998</a>
+      <a class="tb-phone" href="tel:+14692189998">&#128222; Call or text (469) 218-9998</a>
+      <span class="tb-reply">We reply within 24 hours</span>
       <a class="tb-book" href="https://api.leadconnectorhq.com/widget/booking/YDRpFX2LBjEQ5szUkTJy" target="_blank" rel="noopener">&#128197; Book a Tour</a>
     </span>
   </div></div>
@@ -192,13 +306,15 @@
     <nav class="nav-links" id="navLinks">
       <a href="#floor-plans">Floor Plans</a>
       <a href="#amenities">Amenities</a>
+      <a href="#tours">3D Tours</a>
       <a href="#gallery">Gallery</a>
       <a href="#neighborhood">Neighborhood</a>
       <a href="#residents">Residents</a>
+      <a href="#schedule-a-tour">Contact</a>
     </nav>
     <div class="nav-cta">
       <a href="https://excellagroup.rentvine.com/portals/resident/" target="_blank" rel="noopener" class="btn btn-dark">Resident Login</a>
-      <a href="#schedule-a-tour" class="btn btn-primary">Request a Tour</a>
+      <a href="https://api.leadconnectorhq.com/widget/booking/YDRpFX2LBjEQ5szUkTJy" target="_blank" rel="noopener" class="btn btn-primary">Request a Tour</a>
       <button class="hamburger" id="hamburger" aria-label="Menu">&#9776;</button>
     </div>
   </div>
@@ -208,15 +324,28 @@
 <section class="hero">
   <div class="wrap">
     <p class="hero-kick">Village Oaks Apartment Homes</p>
-    <h1>Elevated Apartment Living in Dallas</h1>
-    <p>Spacious 1 &amp; 2 bedroom apartments and townhomes at Village Oaks Apartment Homes — comfort, community, and convenience on Forest Lane.</p>
-    <a href="#schedule-a-tour" class="btn btn-primary">Request a Tour</a>
-    <a href="#floor-plans" class="btn btn-ghost">View Floor Plans</a>
+    <h1>We have one-bed, two-bed, and townhomes available.<br><span class="h1-sub">Available for rent.</span></h1>
+
+    <!-- Move-in special. Terms confirmed by Xue 2026-08-25. -->
+    <div class="special" id="move-in-special" data-status="live">
+      <span class="special-tag">Move-In Special</span>
+      <span class="special-body">$100 a month off two bedrooms and townhomes.
+        $50 a month off one bedrooms. For your first 12 months.</span>
+    </div>
+
+    <div class="hero-cats">
+      <a href="#one-bedroom">One Bedroom<span>$900/mo first year</span></a>
+      <a href="#two-bedroom">Two Bedroom<span>From $999/mo first year</span></a>
+      <a href="#townhomes">Townhomes<span>$1,199/mo first year</span></a>
+    </div>
+
+    <a href="tel:+14692189998" class="btn btn-primary">&#128222; Call (469) 218-9998</a>
+    <a href="https://api.leadconnectorhq.com/widget/booking/YDRpFX2LBjEQ5szUkTJy" target="_blank" rel="noopener" class="btn btn-ghost">Request a Tour</a>
   </div>
 </section>
 <div class="statbar"><div class="wrap">
-  <div><b>1 &amp; 2 Bed</b><small>Floor Plans</small></div>
-  <div><b>From $950</b><small>Per Month</small></div>
+  <div><b>1 Bed, 2 Bed &amp; Townhomes</b><small>Available for Rent</small></div>
+  <div><b>From $900</b><small>Per Month, First Year</small></div>
   <div><b>Pet-Friendly</b><small>Welcome Home</small></div>
   <div><b>9920 Forest Ln</b><small>Dallas, TX 75243</small></div>
 </div></div>
@@ -260,22 +389,126 @@
 <!-- FLOOR PLANS -->
 <section class="plans" id="floor-plans">
   <div class="wrap">
-    <p class="eyebrow">Floor Plans</p>
-    <h2 class="section-title">Find the Right Space for You</h2>
-    <div class="plan-grid">
-      <div class="plan-card"><div class="body"><h3>The Voss</h3><div class="plan-meta">1 Bed · 1 Bath · 701 sq ft</div><div class="plan-price">$950<span style="font-size:.9rem;color:var(--muted)">/mo</span></div><a href="#schedule-a-tour" class="btn btn-dark" style="width:100%;text-align:center">Request a Tour</a></div></div>
-      <div class="plan-card"><div class="body"><h3>The Oak Haven</h3><div class="plan-meta">1 Bed · 1 Bath · 777 sq ft</div><div class="plan-price">$1,080<span style="font-size:.9rem;color:var(--muted)">/mo</span></div><a href="#schedule-a-tour" class="btn btn-dark" style="width:100%;text-align:center">Request a Tour</a></div></div>
-      <div class="plan-card"><div class="body"><h3>The Summit</h3><div class="plan-meta">2 Bed · 1 Bath · 903 sq ft</div><div class="plan-price">$1,250<span style="font-size:.9rem;color:var(--muted)">/mo</span></div><a href="#schedule-a-tour" class="btn btn-dark" style="width:100%;text-align:center">Request a Tour</a></div></div>
-      <div class="plan-card"><div class="body"><h3>The Belmont Townhouse</h3><div class="plan-meta">2 Bed · 2 Bath · 1,059 sq ft</div><div class="plan-price">$1,465<span style="font-size:.9rem;color:var(--muted)">/mo</span></div><a href="#schedule-a-tour" class="btn btn-dark" style="width:100%;text-align:center">Request a Tour</a></div></div>
-      <div class="plan-card"><div class="body"><h3>The Willow</h3><div class="plan-meta">2 Bed · 2 Bath · 1,064 sq ft</div><div class="plan-price">$1,429<span style="font-size:.9rem;color:var(--muted)">/mo</span></div><a href="#schedule-a-tour" class="btn btn-dark" style="width:100%;text-align:center">Request a Tour</a></div></div>
-      <div class="plan-card"><div class="body"><h3>Now Leasing</h3><div class="plan-meta">Availability changes often</div><p style="color:var(--slate);font-size:.92rem;margin-bottom:14px">Ask us what's open — we'll match you to the right home.</p><a href="#availability" class="btn btn-primary" style="width:100%;text-align:center">Check Availability</a></div></div>
+    <p class="eyebrow">What We Have</p>
+    <h2 class="section-title">Three Ways to Live at Village Oaks</h2>
+    <p class="homes-lede">One bedroom, two bedroom, and two-storey townhomes &mdash; all available for rent now.
+      Pick the one that fits, then call (469) 218-9998 or book a tour.</p>
+
+    <!-- ONE BEDROOM -->
+    <article class="cat" id="one-bedroom">
+      <div class="cat-head">
+        <div>
+          <span class="cat-avail">Available for rent</span>
+          <h3>One Bedroom</h3>
+          <p class="cat-meta">1 Bed &middot; 1 Bath &middot; 701&ndash;777 sq ft &middot; The Voss and The Oak Haven</p>
+        </div>
+        <div class="cat-price"><s>$950</s> $900<span>/mo</span></div>
+      </div>
+      <div class="cat-plans">
+        <img src="images/floorplan-1a.webp" alt="One bedroom floor plan, The Voss, 701 square feet" loading="lazy">
+        <img src="images/floorplan-1b.webp" alt="One bedroom floor plan, The Oak Haven, 777 square feet" loading="lazy">
+      </div>
+      <div class="cat-photos">
+        <img src="images/gal-apt-05.webp" alt="Full kitchen with range, refrigerator and ample cabinets" loading="lazy">
+        <img src="images/gal-apt-09.webp" alt="Full bathroom with tub-shower and vanity" loading="lazy">
+        <img src="images/gal-apt-10.webp" alt="Walk-in closet with built-in shelving" loading="lazy">
+        <img src="images/gal-apt-11.webp" alt="Private balcony overlooking mature trees" loading="lazy">
+      </div>
+      <p class="cat-deal"><b>Move-in special:</b> $50 a month off for your first 12 months &mdash;
+        <b>$900/mo</b> instead of $950.</p>
+      <p class="cat-note">Interior photos above show the kitchens, baths and closets fitted throughout the
+        apartment homes. For a room-by-room look at an actual one-bedroom, take the 3D walkthrough.</p>
+      <div class="cat-cta">
+        <a href="tel:+14692189998" class="btn btn-primary">&#128222; Call (469) 218-9998</a>
+        <a href="#tours" class="cat-tourlink" data-tour="pjTXQuYWYcm">&#9654; 3D walkthrough of a one-bedroom</a>
+        <a href="https://api.leadconnectorhq.com/widget/booking/YDRpFX2LBjEQ5szUkTJy" target="_blank" rel="noopener" class="btn btn-dark">Request a Tour</a>
+      </div>
+    </article>
+
+    <!-- TWO BEDROOM -->
+    <article class="cat" id="two-bedroom">
+      <div class="cat-head">
+        <div>
+          <span class="cat-avail">Available for rent</span>
+          <h3>Two Bedroom</h3>
+          <p class="cat-meta">2 Bed &middot; 1&ndash;2 Bath &middot; 903&ndash;1,064 sq ft &middot; The Summit and The Willow</p>
+        </div>
+        <div class="cat-price">From <s>$1,099</s> $999<span>/mo</span></div>
+      </div>
+      <div class="cat-plans">
+        <img src="images/floorplan-2a.webp" alt="Two bedroom two bathroom floor plan, The Willow, 1,064 square feet" loading="lazy">
+      </div>
+      <div class="cat-photos">
+        <img src="images/gal-apt-01.webp" alt="Open living room with vaulted ceiling and wood-burning fireplace" loading="lazy">
+        <img src="images/gal-apt-04.webp" alt="Kitchen with dark counters and breakfast bar seating" loading="lazy">
+        <img src="images/gal-apt-07.webp" alt="Bedroom with large window and ceiling fan" loading="lazy">
+        <img src="images/gal-apt-06.webp" alt="Kitchen with double sink and dishwasher" loading="lazy">
+      </div>
+      <p class="cat-deal"><b>Move-in special:</b> $100 a month off for your first 12 months &mdash;
+        2 Bed &middot; 1 Bath <b>$999/mo</b> instead of $1,099, and 2 Bed &middot; 2 Bath <b>$1,099/mo</b> instead of $1,199.</p>
+      <p class="cat-note">Vaulted ceilings, a wood-burning fireplace, a full kitchen with dishwasher, and a
+        private balcony. Walk-in closets in both bedrooms.</p>
+      <div class="cat-cta">
+        <a href="tel:+14692189998" class="btn btn-primary">&#128222; Call (469) 218-9998</a>
+        <a href="#tours" class="cat-tourlink" data-tour="NC9iRG294Z2">&#9654; 3D walkthrough of a two-bedroom</a>
+        <a href="https://api.leadconnectorhq.com/widget/booking/YDRpFX2LBjEQ5szUkTJy" target="_blank" rel="noopener" class="btn btn-dark">Request a Tour</a>
+      </div>
+    </article>
+
+    <!-- TOWNHOMES -->
+    <article class="cat" id="townhomes">
+      <div class="cat-head">
+        <div>
+          <span class="cat-avail">Available for rent</span>
+          <h3>Townhomes</h3>
+          <p class="cat-meta">2 Bed &middot; 2 Bath &middot; 1,059 sq ft &middot; two storeys &middot; The Belmont Townhouse</p>
+        </div>
+        <div class="cat-price"><s>$1,299</s> $1,199<span>/mo</span></div>
+      </div>
+      <div class="cat-plans">
+        <img src="images/floorplan-2b.webp" alt="Two storey townhome floor plan, The Belmont, 1,059 square feet, upstairs and downstairs" loading="lazy">
+      </div>
+      <div class="cat-photos">
+        <img src="images/gal-th-01.webp" alt="Two-storey townhome living room with fireplace and wood-style flooring" loading="lazy">
+        <img src="images/gal-th-04.webp" alt="Carpeted staircase to the townhome upper level" loading="lazy">
+        <img src="images/gal-th-05.webp" alt="Townhome kitchen with range and generous counter space" loading="lazy">
+        <img src="images/gal-th-09.webp" alt="Upstairs bedroom with natural light and en-suite access" loading="lazy">
+      </div>
+      <p class="cat-deal"><b>Move-in special:</b> $100 a month off for your first 12 months &mdash;
+        <b>$1,199/mo</b> instead of $1,299.</p>
+      <p class="cat-note">Living, dining and kitchen downstairs with a fireplace and wood-style flooring;
+        both bedrooms and both baths upstairs.</p>
+      <div class="cat-cta">
+        <a href="tel:+14692189998" class="btn btn-primary">&#128222; Call (469) 218-9998</a>
+        <a href="#gallery" class="btn btn-dark">See all townhome photos</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 3D WALKTHROUGH TOURS -->
+<section class="tours" id="tours" style="padding:78px 0">
+  <div class="wrap">
+    <p class="eyebrow">3D Walkthrough</p>
+    <h2 class="section-title">Walk Through Before You Visit</h2>
+    <p class="lede">Step inside a real Village Oaks home from wherever you are. Move room to room, look up at the
+      vaulted ceilings, and get a feel for the space. Pick a floor plan below, then click and drag to explore.</p>
+
+    <div class="tour-tabs" role="tablist" aria-label="Choose a floor plan to tour in 3D">
+      <button class="tour-tab" type="button" role="tab" aria-selected="true"
+              data-m="pjTXQuYWYcm" data-label="The Oak Haven, 1 bed 1 bath, 777 square feet">One Bedroom &middot; 777 sq ft</button>
+      <button class="tour-tab" type="button" role="tab" aria-selected="false"
+              data-m="NC9iRG294Z2" data-label="The Willow, 2 bed 2 bath, 1,064 square feet">Two Bedroom &middot; 1,064 sq ft</button>
     </div>
-    <div class="fp-imgs">
-      <img src="images/floorplan-1a.webp" alt="Village Oaks 1 bedroom floor plan">
-      <img src="images/floorplan-1b.webp" alt="Village Oaks 1 bedroom floor plan">
-      <img src="images/floorplan-2a.webp" alt="Village Oaks 2 bedroom floor plan">
-      <img src="images/floorplan-2b.webp" alt="Village Oaks 2 bedroom floor plan">
+
+    <div class="tour-frame">
+      <iframe id="tourFrame" src="https://my.matterport.com/show/?m=pjTXQuYWYcm&amp;play=1"
+              title="3D walkthrough of The Oak Haven, 1 bed 1 bath, 777 square feet"
+              loading="lazy" allow="fullscreen; xr-spatial-tracking" allowfullscreen></iframe>
     </div>
+
+    <p class="tour-note">Tours show a representative home of each floor plan. Finishes and views vary by unit &mdash;
+      <a href="https://api.leadconnectorhq.com/widget/booking/YDRpFX2LBjEQ5szUkTJy" target="_blank" rel="noopener">request a tour</a> to see the one that is actually available.</p>
   </div>
 </section>
 
@@ -297,23 +530,52 @@
   <div class="wrap">
     <p class="eyebrow">Gallery</p>
     <h2 class="section-title">Take a Look Around</h2>
-    <div class="gal-grid">
-      <img src="images/gallery-1.webp" alt="Village Oaks Apartment Homes photo" loading="lazy">
-      <img src="images/gallery-2.webp" alt="Village Oaks Apartment Homes photo" loading="lazy">
-      <img src="images/gallery-3.webp" alt="Village Oaks Apartment Homes photo" loading="lazy">
-      <img src="images/gallery-4.webp" alt="Village Oaks Apartment Homes photo" loading="lazy">
-      <img src="images/gallery-5.webp" alt="Village Oaks Apartment Homes photo" loading="lazy">
-      <img src="images/gallery-6.webp" alt="Village Oaks Apartment Homes photo" loading="lazy">
-      <img src="images/gallery-7.webp" alt="Village Oaks Apartment Homes photo" loading="lazy">
-      <img src="images/gallery-8.webp" alt="Village Oaks Apartment Homes photo" loading="lazy">
-      <img src="images/gallery-9.webp" alt="Village Oaks Apartment Homes photo" loading="lazy">
-      <img src="images/gallery-10.webp" alt="Village Oaks Apartment Homes photo" loading="lazy">
-      <img src="images/gallery-12.webp" alt="Village Oaks Apartment Homes photo" loading="lazy">
-      <img src="images/gallery-13.webp" alt="Village Oaks Apartment Homes photo" loading="lazy">
-      <img src="images/gallery-14.webp" alt="Village Oaks Apartment Homes photo" loading="lazy">
-      <img src="images/gallery-15.webp" alt="Village Oaks Apartment Homes photo" loading="lazy">
-      <img src="images/gallery-16.webp" alt="Village Oaks Apartment Homes photo" loading="lazy">
+    <div class="gal-filters" role="group" aria-label="Filter gallery photos">
+      <button class="gal-filter" type="button" data-filter="all" aria-pressed="true">All Photos</button>
+      <button class="gal-filter" type="button" data-filter="community" aria-pressed="false">Community &amp; Grounds</button>
+      <button class="gal-filter" type="button" data-filter="apartments" aria-pressed="false">Apartment Homes</button>
+      <button class="gal-filter" type="button" data-filter="townhomes" aria-pressed="false">Townhomes</button>
     </div>
+    <div class="gal-grid" id="galGrid">
+      <button class="gal-item" data-cat="community" type="button" aria-label="Open photo: Village Oaks apartment building at sunset with covered parking"><img src="images/gal-com-01.webp" alt="Village Oaks apartment building at sunset with covered parking" width="1600" height="1050" loading="lazy" decoding="async"></button>
+      <button class="gal-item" data-cat="community" type="button" aria-label="Open photo: Village Oaks apartment building and covered resident parking"><img src="images/gal-com-02.webp" alt="Village Oaks apartment building and covered resident parking" width="1600" height="1071" loading="lazy" decoding="async"></button>
+      <button class="gal-item" data-cat="community" type="button" aria-label="Open photo: Tree-lined drive through the Village Oaks community"><img src="images/gal-com-03.webp" alt="Tree-lined drive through the Village Oaks community" width="1600" height="1057" loading="lazy" decoding="async"></button>
+      <button class="gal-item" data-cat="community" type="button" aria-label="Open photo: Village Oaks entrance sign on Forest Lane"><img src="images/gal-com-04.webp" alt="Village Oaks entrance sign on Forest Lane" width="1600" height="1067" loading="lazy" decoding="async"></button>
+      <button class="gal-item" data-cat="community" type="button" aria-label="Open photo: Covered picnic pavilion with grills and picnic tables"><img src="images/gal-com-05.webp" alt="Covered picnic pavilion with grills and picnic tables" width="1600" height="1067" loading="lazy" decoding="async"></button>
+      <button class="gal-item" data-cat="community" type="button" aria-label="Open photo: Shaded picnic and barbecue area at Village Oaks"><img src="images/gal-com-06.webp" alt="Shaded picnic and barbecue area at Village Oaks" width="1600" height="1067" loading="lazy" decoding="async"></button>
+      <button class="gal-item" data-cat="community" type="button" aria-label="Open photo: Row of covered carport parking for residents"><img src="images/gal-com-07.webp" alt="Row of covered carport parking for residents" width="1600" height="1067" loading="lazy" decoding="async"></button>
+      <button class="gal-item" data-cat="community" type="button" aria-label="Open photo: Covered mail center at Village Oaks"><img src="images/gal-com-08.webp" alt="Covered mail center at Village Oaks" width="1600" height="1067" loading="lazy" decoding="async"></button>
+      <button class="gal-item" data-cat="community" type="button" aria-label="Open photo: Landscaped walkway between apartment buildings"><img src="images/gal-com-09.webp" alt="Landscaped walkway between apartment buildings" width="1600" height="1067" loading="lazy" decoding="async"></button>
+      <button class="gal-item" data-cat="community" type="button" aria-label="Open photo: Mature shade trees in the Village Oaks courtyard"><img src="images/gal-com-10.webp" alt="Mature shade trees in the Village Oaks courtyard" width="1600" height="1200" loading="lazy" decoding="async"></button>
+      <button class="gal-item" data-cat="community" type="button" aria-label="Open photo: Gated community entry and playground area"><img src="images/gal-com-11.webp" alt="Gated community entry and playground area" width="1600" height="1067" loading="lazy" decoding="async"></button>
+      <button class="gal-item" data-cat="community" type="button" aria-label="Open photo: Village Oaks community drive and resident parking"><img src="images/gal-com-12.webp" alt="Village Oaks community drive and resident parking" width="1600" height="983" loading="lazy" decoding="async"></button>
+      <button class="gal-item" data-cat="community" type="button" aria-label="Open photo: Community clubhouse kitchen with island seating"><img src="images/gal-com-13.webp" alt="Community clubhouse kitchen with island seating" width="1600" height="1067" loading="lazy" decoding="async"></button>
+      <button class="gal-item" data-cat="community" type="button" aria-label="Open photo: Resident lounge with seating and TV in the clubhouse"><img src="images/gal-com-14.webp" alt="Resident lounge with seating and TV in the clubhouse" width="1600" height="1067" loading="lazy" decoding="async"></button>
+      <button class="gal-item" data-cat="apartments" type="button" aria-label="Open photo: Open living room with vaulted ceiling and wood-burning fireplace"><img src="images/gal-apt-01.webp" alt="Open living room with vaulted ceiling and wood-burning fireplace" width="1600" height="1067" loading="lazy" decoding="async"></button>
+      <button class="gal-item" data-cat="apartments" type="button" aria-label="Open photo: Tiled fireplace and ceiling fan in the living room"><img src="images/gal-apt-02.webp" alt="Tiled fireplace and ceiling fan in the living room" width="1600" height="1067" loading="lazy" decoding="async"></button>
+      <button class="gal-item" data-cat="apartments" type="button" aria-label="Open photo: Living room opening onto the kitchen breakfast bar"><img src="images/gal-apt-03.webp" alt="Living room opening onto the kitchen breakfast bar" width="1600" height="1067" loading="lazy" decoding="async"></button>
+      <button class="gal-item" data-cat="apartments" type="button" aria-label="Open photo: Kitchen with dark counters and breakfast bar seating"><img src="images/gal-apt-04.webp" alt="Kitchen with dark counters and breakfast bar seating" width="1600" height="1067" loading="lazy" decoding="async"></button>
+      <button class="gal-item" data-cat="apartments" type="button" aria-label="Open photo: Full kitchen with range, refrigerator and ample cabinets"><img src="images/gal-apt-05.webp" alt="Full kitchen with range, refrigerator and ample cabinets" width="1600" height="1067" loading="lazy" decoding="async"></button>
+      <button class="gal-item" data-cat="apartments" type="button" aria-label="Open photo: Kitchen with double sink and dishwasher"><img src="images/gal-apt-06.webp" alt="Kitchen with double sink and dishwasher" width="1600" height="1067" loading="lazy" decoding="async"></button>
+      <button class="gal-item" data-cat="apartments" type="button" aria-label="Open photo: Bedroom with large window and ceiling fan"><img src="images/gal-apt-07.webp" alt="Bedroom with large window and ceiling fan" width="1600" height="1067" loading="lazy" decoding="async"></button>
+      <button class="gal-item" data-cat="apartments" type="button" aria-label="Open photo: Second bedroom with ceiling fan and closet"><img src="images/gal-apt-08.webp" alt="Second bedroom with ceiling fan and closet" width="1600" height="1067" loading="lazy" decoding="async"></button>
+      <button class="gal-item" data-cat="apartments" type="button" aria-label="Open photo: Full bathroom with tub-shower and vanity"><img src="images/gal-apt-09.webp" alt="Full bathroom with tub-shower and vanity" width="1600" height="1067" loading="lazy" decoding="async"></button>
+      <button class="gal-item" data-cat="apartments" type="button" aria-label="Open photo: Walk-in closet with built-in shelving"><img src="images/gal-apt-10.webp" alt="Walk-in closet with built-in shelving" width="1600" height="1067" loading="lazy" decoding="async"></button>
+      <button class="gal-item" data-cat="apartments" type="button" aria-label="Open photo: Private balcony overlooking mature trees"><img src="images/gal-apt-11.webp" alt="Private balcony overlooking mature trees" width="1600" height="1067" loading="lazy" decoding="async"></button>
+      <button class="gal-item" data-cat="townhomes" type="button" aria-label="Open photo: Two-story townhome living room with fireplace and wood-style flooring"><img src="images/gal-th-01.webp" alt="Two-story townhome living room with fireplace and wood-style flooring" width="1600" height="1067" loading="lazy" decoding="async"></button>
+      <button class="gal-item" data-cat="townhomes" type="button" aria-label="Open photo: Townhome living area open to the kitchen"><img src="images/gal-th-02.webp" alt="Townhome living area open to the kitchen" width="1600" height="1067" loading="lazy" decoding="async"></button>
+      <button class="gal-item" data-cat="townhomes" type="button" aria-label="Open photo: Vaulted townhome living space with ceiling fan"><img src="images/gal-th-03.webp" alt="Vaulted townhome living space with ceiling fan" width="1600" height="1067" loading="lazy" decoding="async"></button>
+      <button class="gal-item" data-cat="townhomes" type="button" aria-label="Open photo: Carpeted staircase to the townhome upper level"><img src="images/gal-th-04.webp" alt="Carpeted staircase to the townhome upper level" width="1600" height="1067" loading="lazy" decoding="async"></button>
+      <button class="gal-item" data-cat="townhomes" type="button" aria-label="Open photo: Townhome kitchen with range and generous counter space"><img src="images/gal-th-05.webp" alt="Townhome kitchen with range and generous counter space" width="1600" height="1067" loading="lazy" decoding="async"></button>
+      <button class="gal-item" data-cat="townhomes" type="button" aria-label="Open photo: Townhome kitchen with dishwasher and pantry storage"><img src="images/gal-th-06.webp" alt="Townhome kitchen with dishwasher and pantry storage" width="1600" height="1067" loading="lazy" decoding="async"></button>
+      <button class="gal-item" data-cat="townhomes" type="button" aria-label="Open photo: Kitchen pass-through bar off the townhome entry"><img src="images/gal-th-07.webp" alt="Kitchen pass-through bar off the townhome entry" width="1600" height="1067" loading="lazy" decoding="async"></button>
+      <button class="gal-item" data-cat="townhomes" type="button" aria-label="Open photo: Carpeted bedroom with window and adjoining bath"><img src="images/gal-th-08.webp" alt="Carpeted bedroom with window and adjoining bath" width="1600" height="1067" loading="lazy" decoding="async"></button>
+      <button class="gal-item" data-cat="townhomes" type="button" aria-label="Open photo: Upstairs bedroom with natural light and en-suite access"><img src="images/gal-th-09.webp" alt="Upstairs bedroom with natural light and en-suite access" width="1600" height="1067" loading="lazy" decoding="async"></button>
+      <button class="gal-item" data-cat="townhomes" type="button" aria-label="Open photo: Bathroom with stone-look vanity and tub-shower"><img src="images/gal-th-10.webp" alt="Bathroom with stone-look vanity and tub-shower" width="1600" height="1067" loading="lazy" decoding="async"></button>
+      <button class="gal-item" data-cat="townhomes" type="button" aria-label="Open photo: Vanity with large mirror and modern lighting"><img src="images/gal-th-11.webp" alt="Vanity with large mirror and modern lighting" width="1600" height="1067" loading="lazy" decoding="async"></button>
+      <button class="gal-item" data-cat="townhomes" type="button" aria-label="Open photo: Walk-in closet with double hanging rods"><img src="images/gal-th-12.webp" alt="Walk-in closet with double hanging rods" width="1600" height="1067" loading="lazy" decoding="async"></button>
+    </div>
+    <p class="gal-count" id="galCount"></p>
   </div>
 </section>
 
@@ -388,8 +650,10 @@
       <div class="f-links">
         <a href="#floor-plans">Floor Plans</a>
         <a href="#amenities">Amenities</a>
+        <a href="#tours">3D Tours</a>
         <a href="#gallery">Gallery</a>
         <a href="#residents">Residents</a>
+        <a href="#schedule-a-tour">Contact</a>
         <a href="https://excellagroup.rentvine.com/portals/resident/" target="_blank" rel="noopener">Resident Login</a>
         <a href="/privacy-policy.html">Privacy Policy</a>
         <a href="/terms-of-service.html">Terms of Service</a>
@@ -399,9 +663,28 @@
   </div>
 </footer>
 
-<a href="#schedule-a-tour" class="sticky-cta" aria-label="Request a Tour">&#9993; Request a Tour</a>
+<a href="https://api.leadconnectorhq.com/widget/booking/YDRpFX2LBjEQ5szUkTJy" target="_blank" rel="noopener" class="sticky-cta" aria-label="Request a Tour">&#128197; Request a Tour</a>
+
+<!-- Lightbox -->
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="lb-btn lb-close" id="lbClose" type="button" aria-label="Close photo viewer">&times;</button>
+  <button class="lb-btn lb-prev" id="lbPrev" type="button" aria-label="Previous photo">&#8249;</button>
+  <img id="lbImg" src="" alt="">
+  <button class="lb-btn lb-next" id="lbNext" type="button" aria-label="Next photo">&#8250;</button>
+  <p class="lb-cap" id="lbCap"></p>
+</div>
 
 <script>
+  // Keep the hero clear of the fixed header (its height changes with the call bar / wrapping)
+  (function(){
+    var hdr = document.querySelector('header');
+    if(!hdr) return;
+    function sync(){ document.documentElement.style.setProperty('--header-h', hdr.offsetHeight + 'px'); }
+    sync();
+    window.addEventListener('resize', sync);
+    window.addEventListener('load', sync);
+  })();
+
   // Mobile menu
   document.getElementById('hamburger').addEventListener('click', function(){
     document.getElementById('navLinks').classList.toggle('open');
@@ -409,6 +692,100 @@
   document.querySelectorAll('#navLinks a').forEach(function(a){
     a.addEventListener('click', function(){ document.getElementById('navLinks').classList.remove('open'); });
   });
+
+  // Category links that open a specific 3D walkthrough
+  (function(){
+    document.querySelectorAll('.cat-tourlink[data-tour]').forEach(function(link){
+      link.addEventListener('click', function(){
+        var want = link.dataset.tour;
+        var tab = document.querySelector('.tour-tab[data-m="' + want + '"]');
+        if(tab && tab.getAttribute('aria-selected') !== 'true') tab.click();
+      });
+    });
+  })();
+
+  // 3D walkthrough tabs
+  (function(){
+    var frame = document.getElementById('tourFrame');
+    if(!frame) return;
+    document.querySelectorAll('.tour-tab').forEach(function(tab){
+      tab.addEventListener('click', function(){
+        if(tab.getAttribute('aria-selected') === 'true') return;
+        document.querySelectorAll('.tour-tab').forEach(function(t){ t.setAttribute('aria-selected','false'); });
+        tab.setAttribute('aria-selected','true');
+        frame.src = 'https://my.matterport.com/show/?m=' + tab.dataset.m + '&play=1';
+        frame.title = '3D walkthrough of ' + tab.dataset.label;
+      });
+    });
+  })();
+
+  // Gallery filter + lightbox
+  (function(){
+    var grid = document.getElementById('galGrid');
+    if(!grid) return;
+    var items   = Array.prototype.slice.call(grid.querySelectorAll('.gal-item'));
+    var countEl = document.getElementById('galCount');
+    var lb  = document.getElementById('lightbox');
+    var lbI = document.getElementById('lbImg');
+    var lbC = document.getElementById('lbCap');
+    var visible = items.slice();
+    var at = 0, lastFocus = null;
+
+    function applyFilter(cat){
+      visible = [];
+      items.forEach(function(it){
+        var show = (cat === 'all' || it.dataset.cat === cat);
+        it.hidden = !show;
+        if(show) visible.push(it);
+      });
+      countEl.textContent = 'Showing ' + visible.length + ' of ' + items.length + ' photos';
+    }
+
+    document.querySelectorAll('.gal-filter').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        document.querySelectorAll('.gal-filter').forEach(function(b){ b.setAttribute('aria-pressed','false'); });
+        btn.setAttribute('aria-pressed','true');
+        applyFilter(btn.dataset.filter);
+      });
+    });
+    applyFilter('all');
+
+    function show(i){
+      if(!visible.length) return;
+      at = (i + visible.length) % visible.length;
+      var img = visible[at].querySelector('img');
+      lbI.src = img.src;
+      lbI.alt = img.alt;
+      lbC.textContent = img.alt + '  (' + (at + 1) + ' / ' + visible.length + ')';
+    }
+    function openLb(i){
+      lastFocus = document.activeElement;
+      show(i);
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      document.getElementById('lbClose').focus();
+    }
+    function closeLb(){
+      lb.classList.remove('open');
+      lbI.src = '';
+      document.body.style.overflow = '';
+      if(lastFocus) lastFocus.focus();
+    }
+
+    items.forEach(function(it){
+      it.addEventListener('click', function(){ openLb(visible.indexOf(it)); });
+    });
+    document.getElementById('lbClose').addEventListener('click', closeLb);
+    document.getElementById('lbPrev').addEventListener('click', function(){ show(at - 1); });
+    document.getElementById('lbNext').addEventListener('click', function(){ show(at + 1); });
+    lb.addEventListener('click', function(e){ if(e.target === lb) closeLb(); });
+    document.addEventListener('keydown', function(e){
+      if(!lb.classList.contains('open')) return;
+      if(e.key === 'Escape') closeLb();
+      else if(e.key === 'ArrowLeft') show(at - 1);
+      else if(e.key === 'ArrowRight') show(at + 1);
+    });
+  })();
 
 </script>
 
