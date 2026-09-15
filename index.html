@@ -76,6 +76,16 @@
   .nav-links{display:flex;gap:26px;align-items:center}
   .nav-links a{font-size:.92rem;font-weight:500;color:var(--ink)}
   .nav-links a:hover{color:var(--accent)}
+  .nav-links a.nav-primary{color:var(--accent);font-weight:700}
+  .nav-links a.nav-primary:hover{color:var(--accent-dk)}
+  .nav-dd{position:relative;display:flex;align-items:center;align-self:stretch}
+  .nav-dd-btn{background:none;border:none;padding:0;font:inherit;font-size:.92rem;font-weight:500;color:var(--ink);cursor:pointer}
+  .nav-dd-btn:hover{color:var(--accent)}
+  .nav-dd-menu{display:none;position:absolute;top:100%;left:-16px;min-width:200px;flex-direction:column;background:#fff;
+    border:1px solid var(--line);border-radius:8px;box-shadow:0 10px 30px rgba(0,0,0,.12);padding:8px 0;z-index:110}
+  .nav-dd-menu a{display:block;padding:9px 18px}
+  .nav-dd.open .nav-dd-menu{display:flex}
+  @media(hover:hover){.nav-dd:hover .nav-dd-menu{display:flex}}
   .nav-cta{display:flex;gap:10px;align-items:center}
   .nav-cta .btn{padding:9px 18px;font-size:.88rem}
   .hamburger{display:none;background:none;border:none;font-size:1.6rem;cursor:pointer;color:var(--ink)}
@@ -251,7 +261,6 @@
 
   @media(max-width:860px){
     .nav{height:62px}
-    .nav-cta .btn-dark{display:none}
     .nav-cta .btn{padding:8px 13px;font-size:.82rem}
     .logo img{max-height:34px}
     .hero{min-height:0;padding:22px 0 26px;text-align:center}
@@ -281,6 +290,10 @@
     .tb-reply{font-size:.78rem}
     .nav-links{display:none}.hamburger{display:block}
     .nav-links.open{display:flex;flex-direction:column;position:absolute;top:var(--header-h,152px);left:0;right:0;background:#fff;padding:18px 24px;border-bottom:1px solid var(--line);gap:14px}
+    .nav-dd{flex-direction:column;align-items:flex-start;align-self:auto}
+    .nav-dd-btn{cursor:default;color:var(--muted);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase}
+    .nav-dd-menu,.nav-dd.open .nav-dd-menu{display:flex;position:static;min-width:0;border:0;box-shadow:none;border-radius:0;padding:6px 0 0 14px;gap:12px}
+    .nav-dd-menu a{padding:0}
     .about-grid,.tour-grid,.hood-grid{grid-template-columns:1fr}
     .amen-grid,.plan-grid,.res-grid,.res-cards{grid-template-columns:1fr}
     .gal-grid{grid-template-columns:1fr 1fr}
@@ -304,17 +317,21 @@
   <div class="wrap nav">
     <a href="#" class="logo"><img src="images/vo-logo.png" alt="Village Oaks Apartment Homes"></a>
     <nav class="nav-links" id="navLinks">
-      <a href="#floor-plans">Floor Plans</a>
-      <a href="#amenities">Amenities</a>
+      <a href="/availability" class="nav-primary">Apply Now</a>
+      <a href="#floor-plans">Floor Plans &amp; Pricing</a>
       <a href="#tours">3D Tours</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#neighborhood">Neighborhood</a>
-      <a href="#residents">Residents</a>
+      <div class="nav-dd">
+        <button type="button" class="nav-dd-btn" aria-haspopup="true" aria-expanded="false">Community &#9662;</button>
+        <div class="nav-dd-menu">
+          <a href="#amenities">Amenities</a>
+          <a href="#gallery">Photo Gallery</a>
+          <a href="#neighborhood">Neighborhood</a>
+        </div>
+      </div>
       <a href="#schedule-a-tour">Contact</a>
     </nav>
     <div class="nav-cta">
       <a href="https://excellagroup.rentvine.com/portals/resident/" target="_blank" rel="noopener" class="btn btn-dark">Resident Login</a>
-      <a href="https://api.leadconnectorhq.com/widget/booking/YDRpFX2LBjEQ5szUkTJy" target="_blank" rel="noopener" class="btn btn-primary">Request a Tour</a>
       <button class="hamburger" id="hamburger" aria-label="Menu">&#9776;</button>
     </div>
   </div>
@@ -693,6 +710,21 @@
   });
   document.querySelectorAll('#navLinks a').forEach(function(a){
     a.addEventListener('click', function(){ document.getElementById('navLinks').classList.remove('open'); });
+  });
+
+  // Community drop-down (click / keyboard; hover is CSS)
+  document.querySelectorAll('.nav-dd-btn').forEach(function(btn){
+    btn.addEventListener('click', function(e){
+      e.stopPropagation();
+      var open = btn.parentNode.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+  document.addEventListener('click', function(){
+    document.querySelectorAll('.nav-dd.open').forEach(function(dd){
+      dd.classList.remove('open');
+      dd.querySelector('.nav-dd-btn').setAttribute('aria-expanded','false');
+    });
   });
 
   // Category links that open a specific 3D walkthrough
