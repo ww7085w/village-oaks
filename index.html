@@ -33,23 +33,30 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#26323a; --slate:#3a4a54; --accent:#b9744f; --accent-dk:#9c5d3c;
-    --cream:#f7f4ef; --line:#e7e0d6; --text:#2c2c2c; --muted:#6f7a80; --white:#fff;
+    --ink:#26323a; --slate:#3a4a54;
+    /* #b9744f is the brand terracotta: 3.70:1 on white — fine for large text (>=24px) and
+       non-text UI at 3:1, but NOT the 4.5:1 normal text needs. Small text uses --accent-text;
+       filled buttons use --accent-dk so white label text clears 4.5:1. */
+    --accent:#b9744f; --accent-text:#9f603f; --accent-dk:#9c5d3c; --accent-darker:#824d30;
+    --accent-on-dark:#e6b394;
+    --cream:#f7f4ef; --line:#e7e0d6; --line-strong:#767b7f; --text:#2c2c2c;
+    --muted:#677277; --white:#fff;
+    --focus:#26323a; --focus-on-dark:#ffffff;
     --serif:'Playfair Display',Georgia,serif; --sans:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth;scroll-padding-top:112px}
+  html{scroll-behavior:smooth;scroll-padding-top:var(--header-h,152px)}
   body{font-family:var(--sans);color:var(--text);line-height:1.65;background:var(--white)}
   a{color:inherit;text-decoration:none}
   img{max-width:100%;display:block}
   .wrap{max-width:1160px;margin:0 auto;padding:0 24px}
   h1,h2,h3{font-family:var(--serif);color:var(--ink);line-height:1.2}
-  h2.section-title{font-size:2.1rem;margin-bottom:8px}
-  .eyebrow{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:10px}
+  .section-title{font-size:2.1rem;margin-bottom:8px}
+  .eyebrow{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-text);font-weight:600;margin-bottom:10px}
   section{padding:72px 0}
   .btn{display:inline-block;padding:13px 26px;border-radius:6px;font-weight:600;font-size:.95rem;cursor:pointer;border:none;transition:.2s}
-  .btn-primary{background:var(--accent);color:#fff}
-  .btn-primary:hover{background:var(--accent-dk)}
+  .btn-primary{background:var(--accent-dk);color:#fff}
+  .btn-primary:hover{background:var(--accent-darker)}
   .btn-ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.7)}
   .btn-ghost:hover{background:rgba(255,255,255,.12)}
   .btn-dark{background:var(--ink);color:#fff}
@@ -61,31 +68,28 @@
   .logo{font-family:var(--serif);font-size:1.95rem;font-weight:700;color:var(--ink);display:inline-block;text-align:center}
   .logo{line-height:1.05}
   .logo span{color:var(--accent)}
-  .logo small{display:block;font-family:var(--sans);font-size:.68rem;letter-spacing:.24em;color:var(--accent);font-weight:600;margin-top:3px}
+  .logo small{display:block;font-family:var(--sans);font-size:.68rem;letter-spacing:.24em;color:var(--accent-text);font-weight:600;margin-top:3px}
   .logo img{height:58px;width:auto;display:block}
   .topbar{background:var(--slate);color:#dfe6ea;font-size:.85rem}
   .topbar-in{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;
     gap:8px 18px;min-height:46px;padding-top:6px;padding-bottom:6px}
   .topbar a{color:#fff;font-weight:600}
-  .topbar a:hover{color:var(--accent)}
+  .topbar a:hover{color:var(--accent-on-dark)}
   .tb-contact{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center}
   .tb-phone{font-size:1.1rem;font-weight:800;letter-spacing:.01em;white-space:nowrap}
   .tb-reply{font-size:.82rem;color:#cdd8de;white-space:nowrap}
-  .tb-book{background:var(--accent);color:#fff!important;padding:5px 14px;border-radius:5px;font-weight:600}
-  .tb-book:hover{background:var(--accent-dk);color:#fff!important}
   .nav-links{display:flex;gap:26px;align-items:center}
   .nav-links a{font-size:.92rem;font-weight:500;color:var(--ink)}
-  .nav-links a:hover{color:var(--accent)}
-  .nav-links a.nav-primary{color:var(--accent);font-weight:700}
+  .nav-links a:hover{color:var(--accent-text)}
+  .nav-links a.nav-primary{color:var(--accent-text);font-weight:700}
   .nav-links a.nav-primary:hover{color:var(--accent-dk)}
   .nav-dd{position:relative;display:flex;align-items:center;align-self:stretch}
   .nav-dd-btn{background:none;border:none;padding:0;font:inherit;font-size:.92rem;font-weight:500;color:var(--ink);cursor:pointer}
-  .nav-dd-btn:hover{color:var(--accent)}
+  .nav-dd-btn:hover{color:var(--accent-text)}
   .nav-dd-menu{display:none;position:absolute;top:100%;left:-16px;min-width:200px;flex-direction:column;background:#fff;
     border:1px solid var(--line);border-radius:8px;box-shadow:0 10px 30px rgba(0,0,0,.12);padding:8px 0;z-index:110}
   .nav-dd-menu a{display:block;padding:9px 18px}
   .nav-dd.open .nav-dd-menu{display:flex}
-  @media(hover:hover){.nav-dd:hover .nav-dd-menu{display:flex}}
   .nav-cta{display:flex;gap:10px;align-items:center}
   .nav-cta .btn{padding:9px 18px;font-size:.88rem}
   .hamburger{display:none;background:none;border:none;font-size:1.6rem;cursor:pointer;color:var(--ink)}
@@ -99,8 +103,9 @@
   .hero .btn{margin:0 8px}
   .statbar{background:var(--ink);color:#fff}
   .statbar .wrap{display:flex;flex-wrap:wrap;justify-content:space-around;gap:16px;padding:22px 24px;text-align:center}
-  .statbar b{font-family:var(--serif);font-size:1.3rem;display:block;color:#fff}
-  .statbar small{font-size:.8rem;letter-spacing:.05em;color:#b9c4cb;text-transform:uppercase}
+  .statbar li{list-style:none}
+  .statbar strong{font-family:var(--serif);font-size:1.3rem;display:block;color:#fff}
+  .statbar span{font-size:.8rem;letter-spacing:.05em;color:#b9c4cb;text-transform:uppercase}
 
   /* about */
   .about{background:var(--cream)}
@@ -114,18 +119,10 @@
   .amen-card h3{font-size:1.05rem;margin-bottom:8px}
   .amen-card ul{list-style:none;color:var(--slate);font-size:.93rem}
   .amen-card li{padding:4px 0 4px 20px;position:relative}
-  .amen-card li::before{content:"✦";position:absolute;left:0;color:var(--accent);font-size:.8rem}
+  .amen-card li::before{content:"✦" / "";position:absolute;left:0;color:var(--accent-text);font-size:.8rem}
 
   /* floor plans */
   .plans{background:var(--cream)}
-  .plan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:30px}
-  .plan-card{background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
-  .plan-card .body{padding:20px}
-  .plan-card h3{font-size:1.2rem}
-  .plan-meta{color:var(--muted);font-size:.9rem;margin:6px 0 12px}
-  .plan-price{font-family:var(--serif);font-size:1.5rem;color:var(--accent);font-weight:700;margin-bottom:14px}
-  .fp-imgs{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:34px}
-  .fp-imgs img{border:1px solid var(--line);border-radius:8px;background:#fff;padding:8px}
 
 
   :target{scroll-margin-top:calc(var(--header-h,152px) + 12px)}
@@ -145,7 +142,7 @@
   .hero-cats a{flex:1 1 190px;background:rgba(255,255,255,.14);border:1.5px solid rgba(255,255,255,.6);
     color:#fff;border-radius:8px;padding:12px 10px;font-weight:700;font-size:1rem;line-height:1.2}
   .hero-cats a span{display:block;font-weight:500;font-size:.8rem;opacity:.88;margin-top:3px}
-  .hero-cats a:hover{background:var(--accent);border-color:var(--accent)}
+  .hero-cats a:hover{background:var(--accent-dk);border-color:var(--accent-dk)}
 
   /* product categories */
   .homes-lede{color:var(--slate);max-width:64ch;margin-bottom:8px}
@@ -158,7 +155,7 @@
   .cat-price span{font-family:var(--sans);font-size:.9rem;color:var(--muted);font-weight:500}
   .cat-avail{display:inline-block;background:#e8f3ec;color:#1c6b3f;font-size:.78rem;font-weight:700;
     letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:20px;margin-bottom:8px}
-  .cat-plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,340px));gap:14px;justify-content:center}
+  .cat-plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),340px));gap:14px;justify-content:center}
   .cat-plans img{width:100%;height:330px;object-fit:contain;border:1px solid var(--line);border-radius:8px;background:#fff;padding:8px}
   .cat-photos{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px}
   .cat-photos img{width:100%;height:150px;object-fit:cover;border-radius:8px}
@@ -169,9 +166,20 @@
   .cat-note{font-size:.85rem;color:var(--muted);margin-top:12px;line-height:1.55}
   .cat-cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;align-items:center}
   .cat-cta .btn{padding:12px 22px}
-  .cat-tourlink{display:inline-flex;align-items:center;gap:8px;font-weight:700;color:var(--accent);
-    border:1.5px solid var(--accent);border-radius:6px;padding:11px 20px;font-size:.95rem}
-  .cat-tourlink:hover{background:var(--accent);color:#fff}
+  .cat-tourlink{display:inline-flex;align-items:center;gap:8px;font-weight:700;color:var(--accent-text);
+    border:1.5px solid var(--accent-text);border-radius:6px;padding:11px 20px;font-size:.95rem}
+  .cat-tourlink:hover{background:var(--accent-dk);color:#fff}
+
+  /* section layout helpers (were inline styles) */
+  .tours{padding:78px 0}
+  .availability{padding:72px 0;background:var(--cream)}
+  .availability-page{margin-top:var(--header-h,152px);min-height:60vh;padding:72px 0;background:var(--cream)}
+  .section-lede{color:var(--slate);max-width:60ch;margin-bottom:28px}
+  .section-lede a{color:var(--accent-text)}
+  .section-note{margin-top:22px;color:var(--muted);font-size:.92rem}
+  .tour-intro{color:var(--slate);max-width:660px;margin:6px 0 24px}
+  .tour-book-cta{margin-bottom:34px}
+  .footer-addr{margin-top:8px;font-size:.9rem}
 
   /* 3d tours */
   .tours{background:var(--ink);color:#fff}
@@ -179,10 +187,10 @@
   .tours .eyebrow{color:#e0a787}
   .tours .lede{color:#c2cdd3;max-width:64ch;margin-bottom:24px}
   .tour-tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}
-  .tour-tab{border:1px solid rgba(255,255,255,.28);background:transparent;color:#fff;border-radius:999px;
+  .tour-tab{border:1px solid rgba(255,255,255,.5);background:transparent;color:#fff;border-radius:999px;
     padding:10px 20px;font:inherit;font-size:.9rem;cursor:pointer;transition:background .15s,border-color .15s}
   .tour-tab:hover{border-color:var(--accent)}
-  .tour-tab[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+  .tour-tab[aria-selected="true"]{background:var(--accent-dk);border-color:var(--accent-dk);color:#fff;font-weight:600}
   .tour-frame{position:relative;width:100%;aspect-ratio:16/9;min-height:340px;border-radius:10px;overflow:hidden;
     background:#0f1519;border:1px solid rgba(255,255,255,.14)}
   .tour-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
@@ -191,15 +199,14 @@
 
   /* gallery */
   .gal-filters{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
-  .gal-filter{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;
+  .gal-filter{border:1px solid var(--line-strong);background:#fff;color:var(--ink);border-radius:999px;
     padding:9px 18px;font:inherit;font-size:.88rem;cursor:pointer;transition:background .15s,border-color .15s,color .15s}
-  .gal-filter:hover{border-color:var(--accent);color:var(--accent)}
+  .gal-filter:hover{border-color:var(--accent);color:var(--accent-text)}
   .gal-filter[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:600}
   .gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
   .gal-item{padding:0;border:0;background:none;cursor:zoom-in;border-radius:8px;overflow:hidden;display:block;line-height:0}
   .gal-item img{height:230px;width:100%;object-fit:cover;border-radius:8px;transition:transform .3s ease}
   .gal-item:hover img{transform:scale(1.04)}
-  .gal-item:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
   .gal-item[hidden]{display:none}
   .gal-count{margin-top:18px;font-size:.88rem;color:var(--muted)}
 
@@ -209,9 +216,9 @@
   .lb.open{display:flex}
   .lb img{max-width:min(1400px,94vw);max-height:82vh;object-fit:contain;border-radius:6px}
   .lb-cap{position:absolute;left:0;right:0;bottom:20px;text-align:center;color:#e6ecef;font-size:.9rem;padding:0 60px}
-  .lb-btn{position:absolute;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:#fff;
+  .lb-btn{position:absolute;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.5);color:#fff;
     width:46px;height:46px;border-radius:50%;font-size:1.4rem;line-height:1;cursor:pointer;display:grid;place-items:center}
-  .lb-btn:hover{background:var(--accent);border-color:var(--accent)}
+  .lb-btn:hover{background:var(--accent-dk);border-color:var(--accent-dk)}
   .lb-prev{left:16px;top:50%;transform:translateY(-50%)}
   .lb-next{right:16px;top:50%;transform:translateY(-50%)}
   .lb-close{right:16px;top:16px}
@@ -233,17 +240,11 @@
   /* tour / contact */
   .tour{background:var(--cream)}
   .tour-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px}
-  .form-group{margin-bottom:16px}
-  .form-group label{display:block;font-size:.88rem;font-weight:600;color:var(--ink);margin-bottom:6px}
-  .form-group input,.form-group textarea{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:7px;font-family:var(--sans);font-size:.95rem}
-  .consent{display:flex;align-items:flex-start;gap:10px;margin:6px 0 18px}
-  .consent input{margin-top:4px;flex-shrink:0;width:18px;height:18px;accent-color:var(--accent)}
-  .consent label{font-size:.8rem;color:var(--muted);line-height:1.5}
-  .consent a{color:var(--accent);text-decoration:underline}
   .contact-info{color:var(--slate)}
-  .contact-info .ci{display:flex;gap:12px;margin-bottom:18px;align-items:flex-start}
-  .contact-info .ci b{display:block;color:var(--ink)}
-  #tour-status{display:none;padding:12px;border-radius:7px;background:#e8f3ec;color:#1c6b3f;font-size:.9rem;margin-top:10px}
+  .contact-info .ci{margin-bottom:18px}
+  .contact-info dt{display:flex;align-items:center;gap:10px;color:var(--ink);font-weight:700}
+  .contact-info dd{margin-left:calc(1em + 10px)}
+  .contact-info dd a{color:var(--accent-text);text-decoration:underline}
 
   /* footer */
   footer{background:var(--ink);color:#aeb9bf;padding:46px 0 30px}
@@ -251,14 +252,14 @@
   footer .logo{color:#fff}
   footer a{color:#aeb9bf}footer a:hover{color:#fff}
   footer .f-links{display:flex;gap:22px;flex-wrap:wrap}
-  footer .copy{border-top:1px solid #3a4a54;margin-top:28px;padding-top:18px;font-size:.85rem;color:#8a969d}
-  .eho{font-size:.8rem;color:#8a969d;margin-top:6px}
+  footer .copy{border-top:1px solid #3a4a54;margin-top:28px;padding-top:18px;font-size:.85rem;color:#9aa6ad}
+  .eho{font-size:.8rem;color:#9aa6ad;margin-top:6px}
 
   /* sticky tour CTA */
   .sticky-cta{position:fixed;right:22px;bottom:22px;z-index:95;display:inline-flex;align-items:center;gap:8px;
     background:var(--ink);color:#fff;padding:13px 22px;border-radius:30px;font-weight:600;font-size:.95rem;
     box-shadow:0 8px 26px rgba(0,0,0,.28);transition:.2s}
-  .sticky-cta:hover{background:var(--accent);color:#fff}
+  .sticky-cta:hover{background:var(--accent-dk);color:#fff}
 
 
   @media(max-width:860px){
@@ -273,6 +274,7 @@
     .hero .btn{margin:4px}
     .special{margin-bottom:14px}
     .special .special-body{font-size:.94rem;padding:11px 13px}
+    .special .sp-item{white-space:normal}
     .hero-cats{gap:8px;margin-bottom:16px}
     .hero-cats a{flex:1 1 100px;padding:10px 6px;font-size:.9rem}
     .hero-cats a span{font-size:.72rem}
@@ -290,40 +292,66 @@
     .tb-contact{justify-content:center;width:100%;gap:4px 12px}
     .tb-phone{font-size:1.05rem}
     .tb-reply{font-size:.78rem}
-    .nav-links{display:none}.hamburger{display:block}
+    .nav-links{display:none}.hamburger{display:grid}
     .nav-links.open{display:flex;flex-direction:column;position:absolute;top:var(--header-h,152px);left:0;right:0;background:#fff;padding:18px 24px;border-bottom:1px solid var(--line);gap:14px}
     .nav-dd{flex-direction:column;align-items:flex-start;align-self:auto}
-    .nav-dd-btn{cursor:default;color:var(--muted);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase}
-    .nav-dd-menu,.nav-dd.open .nav-dd-menu{display:flex;position:static;min-width:0;border:0;box-shadow:none;border-radius:0;padding:6px 0 0 14px;gap:12px}
+    .nav-dd-btn{color:var(--muted);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase}
+    .nav-dd-menu{display:none}
+    .nav-dd.open .nav-dd-menu{display:flex;position:static;min-width:0;border:0;box-shadow:none;border-radius:0;padding:6px 0 0 14px;gap:12px}
     .nav-dd-menu a{padding:0}
     .about-grid,.tour-grid,.hood-grid{grid-template-columns:1fr}
-    .amen-grid,.plan-grid,.res-grid,.res-cards{grid-template-columns:1fr}
+    .amen-grid,.res-cards{grid-template-columns:1fr}
     .gal-grid{grid-template-columns:1fr 1fr}
-    .fp-imgs{grid-template-columns:1fr 1fr}
     .hero h1{font-size:2.2rem}
     .sticky-cta{right:14px;bottom:14px;padding:11px 18px;font-size:.88rem}
+  }
+
+  /* ---------- accessibility utilities ---------- */
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+    clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
+  .skip-link{position:absolute;left:8px;top:-60px;z-index:200;background:var(--ink);color:#fff;
+    padding:12px 18px;border-radius:0 0 6px 6px;font-weight:600;text-decoration:none;transition:top .15s}
+  .skip-link:focus{top:0}
+  /* 2.4.7 Focus Visible / 2.4.13 — one high-contrast ring everywhere, never removed */
+  :focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:3px}
+  .topbar :focus-visible,.hero :focus-visible,.statbar :focus-visible,.tours :focus-visible,
+  .hood :focus-visible,footer :focus-visible,.lb :focus-visible,.sticky-cta:focus-visible{
+    outline-color:var(--focus-on-dark)}
+  /* 2.5.8 Target Size (Minimum) — 24x24 CSS px */
+  .nav-links>a,.nav-dd-btn,.topbar a,footer .f-links a{display:inline-flex;align-items:center;min-height:24px}
+  /* sizing only — the display toggle stays with the base rule and the 860px media query above,
+     which both appear earlier in source order and would otherwise be overridden here */
+  .hamburger{min-width:44px;min-height:44px;place-items:center}
+  /* 2.3.3 / respect the OS "reduce motion" setting */
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;
+      transition-duration:.01ms!important;scroll-behavior:auto!important}
+    .gal-item:hover img{transform:none}
   }
 </style>
 </head>
 <body>
 
+<a class="skip-link" href="#main">Skip to main content</a>
+
 <header>
   <div class="topbar"><div class="wrap topbar-in">
-    <a class="tb-addr" href="https://maps.google.com/?q=9920+Forest+Lane,+Dallas,+TX+75243" target="_blank" rel="noopener">&#128205; 9920 Forest Lane, Dallas, TX 75243</a>
+    <a class="tb-addr" href="https://maps.google.com/?q=9920+Forest+Lane,+Dallas,+TX+75243" target="_blank" rel="noopener"><span aria-hidden="true">&#128205;</span> 9920 Forest Lane, Dallas, TX 75243<span class="sr-only"> (opens in a new tab)</span></a>
     <span class="tb-contact">
-      <a class="tb-phone" href="tel:+14692189998">&#128222; Call or text (469) 218-9998</a>
+      <a class="tb-phone" href="tel:+14692189998"><span aria-hidden="true">&#128222;</span> Call or text (469) 218-9998</a>
       <span class="tb-reply">We reply within 24 hours</span>
     </span>
   </div></div>
   <div class="wrap nav">
-    <a href="#" class="logo"><img src="images/vo-logo.png" alt="Village Oaks Apartment Homes"></a>
-    <nav class="nav-links" id="navLinks">
+    <a href="/" class="logo"><img src="images/vo-logo.png" width="773" height="351" alt="Village Oaks Apartment Homes — home"></a>
+    <nav class="nav-links" id="navLinks" aria-label="Main">
       <a href="/availability" class="nav-primary">Apply Now</a>
       <a href="#floor-plans">Floor Plans &amp; Pricing</a>
       <a href="#tours">3D Tours</a>
       <div class="nav-dd">
-        <button type="button" class="nav-dd-btn" aria-haspopup="true" aria-expanded="false">Community &#9662;</button>
-        <div class="nav-dd-menu">
+        <button type="button" class="nav-dd-btn" id="navDdBtn" aria-expanded="false" aria-controls="navDdMenu">Community <span aria-hidden="true">&#9662;</span></button>
+        <div class="nav-dd-menu" id="navDdMenu">
           <a href="#amenities">Amenities</a>
           <a href="#gallery">Photo Gallery</a>
           <a href="#neighborhood">Neighborhood</a>
@@ -332,12 +360,14 @@
       <a href="#schedule-a-tour">Contact</a>
     </nav>
     <div class="nav-cta">
-      <a href="https://api.leadconnectorhq.com/widget/booking/YDRpFX2LBjEQ5szUkTJy" target="_blank" rel="noopener" class="btn btn-primary">Book a Tour</a>
-      <a href="https://excellagroup.rentvine.com/portals/resident/" target="_blank" rel="noopener" class="btn btn-dark">Resident Login</a>
-      <button class="hamburger" id="hamburger" aria-label="Menu">&#9776;</button>
+      <a href="https://api.leadconnectorhq.com/widget/booking/YDRpFX2LBjEQ5szUkTJy" target="_blank" rel="noopener" class="btn btn-primary">Book a Tour<span class="sr-only"> (opens in a new tab)</span></a>
+      <a href="https://excellagroup.rentvine.com/portals/resident/" target="_blank" rel="noopener" class="btn btn-dark">Resident Login<span class="sr-only"> (opens in a new tab)</span></a>
+      <button class="hamburger" id="hamburger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navLinks"><span aria-hidden="true">&#9776;</span></button>
     </div>
   </div>
 </header>
+
+<main id="main">
 
 <!-- HERO -->
 <section class="hero">
@@ -346,11 +376,11 @@
     <h1>We have one-bed and two-bed condos, and townhomes, available.<br><span class="h1-sub">Available for rent.</span></h1>
 
     <!-- Move-in special. Terms confirmed by Xue 2026-08-25. -->
-    <div class="special" id="move-in-special" data-status="live">
+    <aside class="special" id="move-in-special" data-status="live" aria-label="Move-in special">
       <span class="special-tag">Move-In Special</span>
-      <span class="special-body"><span class="sp-item">One bedroom <s>$950</s> $900</span> &middot; <span class="sp-item">Two bedroom <s>$1,099</s> from $999</span> &middot; <span class="sp-item">Townhome <s>$1,299</s> $1,199</span></span>
+      <span class="special-body"><span class="sp-item">One bedroom <s><span class="sr-only">was </span>$950</s> <span class="sr-only">now </span>$900</span> &middot; <span class="sp-item">Two bedroom <s><span class="sr-only">was </span>$1,099</s> <span class="sr-only">now </span>from $999</span> &middot; <span class="sp-item">Townhome <s><span class="sr-only">was </span>$1,299</s> <span class="sr-only">now </span>$1,199</span></span>
       <span class="special-sub">Per month, for your first 12 months</span>
-    </div>
+    </aside>
 
     <div class="hero-cats">
       <a href="#one-bedroom">One Bedroom<span>$900/mo first year</span></a>
@@ -358,16 +388,16 @@
       <a href="#townhomes">Townhomes<span>$1,199/mo first year</span></a>
     </div>
 
-    <a href="tel:+14692189998" class="btn btn-primary">&#128222; Call (469) 218-9998</a>
-    <a href="https://api.leadconnectorhq.com/widget/booking/YDRpFX2LBjEQ5szUkTJy" target="_blank" rel="noopener" class="btn btn-ghost">Request a Tour</a>
+    <a href="tel:+14692189998" class="btn btn-primary"><span aria-hidden="true">&#128222;</span> Call (469) 218-9998</a>
+    <a href="https://api.leadconnectorhq.com/widget/booking/YDRpFX2LBjEQ5szUkTJy" target="_blank" rel="noopener" class="btn btn-ghost">Request a Tour<span class="sr-only"> (opens in a new tab)</span></a>
   </div>
 </section>
-<div class="statbar"><div class="wrap">
-  <div><b>1 &amp; 2 Bed Condos &amp; Townhomes</b><small>Available for Rent</small></div>
-  <div><b>From $900</b><small>Per Month, First Year</small></div>
-  <div><b>Pet-Friendly</b><small>Welcome Home</small></div>
-  <div><b>9920 Forest Ln</b><small>Dallas, TX 75243</small></div>
-</div></div>
+<div class="statbar"><ul class="wrap" role="list">
+  <li><strong>1 &amp; 2 Bed Condos &amp; Townhomes</strong><span>Available for Rent</span></li>
+  <li><strong>From $900</strong><span>Per Month, First Year</span></li>
+  <li><strong>Pet-Friendly</strong><span>Welcome Home</span></li>
+  <li><strong>9920 Forest Ln</strong><span>Dallas, TX 75243</span></li>
+</ul></div>
 
 <!-- ABOUT -->
 <section class="about" id="overview">
@@ -378,7 +408,7 @@
       <p>Village Oaks Apartment Homes offers comfortable, spacious living in the heart of Dallas. Our pet-friendly community features generous one- and two-bedroom condos and townhomes, with on-site staff and 24-hour maintenance dedicated to making this feel like home.</p>
       <p>Enjoy vaulted ceilings, walk-in closets, washer/dryer hookups, and a quiet, tree-lined setting — all just minutes from shopping, dining, and major Dallas employers.</p>
     </div>
-    <img src="images/int-living.jpg" alt="Bright open living room and kitchen at Village Oaks">
+    <img src="images/int-living.jpg" width="3000" height="2000" alt="Bright open living room and kitchen at Village Oaks">
   </div>
 </section>
 
@@ -388,22 +418,22 @@
     <p class="eyebrow">Features &amp; Amenities</p>
     <h2 class="section-title">Designed for Everyday Comfort</h2>
     <div class="amen-grid">
-      <div class="amen-card"><h3>In Your Home</h3><ul>
+      <div class="amen-card"><h3>In Your Home</h3><ul role="list">
         <li>Washer &amp; dryer hookups</li><li>Vaulted ceilings</li><li>Walk-in closets</li>
         <li>Wood-burning fireplace (select units)</li><li>Private patio / balcony</li><li>Carpet &amp; tile flooring</li>
       </ul></div>
-      <div class="amen-card"><h3>Kitchen</h3><ul>
+      <div class="amen-card"><h3>Kitchen</h3><ul role="list">
         <li>Full appliance package</li><li>Dishwasher</li><li>Garbage disposal</li>
         <li>Granite-style counters</li><li>Ample cabinet space</li>
       </ul></div>
-      <div class="amen-card"><h3>Community</h3><ul>
+      <div class="amen-card"><h3>Community</h3><ul role="list">
         <li>Pet-friendly</li><li>Free covered carport with every home</li>
         <li>Two free spaces with every two bedroom</li><li>Marked guest parking</li>
         <li>BBQ / picnic area</li>
         <li>Resident lounge</li><li>24-hour maintenance</li><li>On-site management</li>
       </ul></div>
     </div>
-    <p style="margin-top:22px;color:var(--muted);font-size:.92rem">Pet-friendly · $500 deposit · $60 application fee</p>
+    <p class="section-note">Pet-friendly · $500 deposit · $60 application fee</p>
   </div>
 </section>
 
@@ -423,26 +453,26 @@
           <h3>One Bedroom Condo</h3>
           <p class="cat-meta">1 Bed &middot; 1 Bath &middot; 701&ndash;777 sq ft &middot; The Voss and The Oak Haven</p>
         </div>
-        <div class="cat-price"><s>$950</s> $900<span>/mo</span></div>
+        <div class="cat-price"><s><span class="sr-only">Regular price </span>$950</s> <span class="sr-only">now </span>$900<span>/mo</span></div>
       </div>
       <div class="cat-plans">
-        <img src="images/floorplan-1a.webp" alt="One bedroom floor plan, The Voss, 701 square feet" loading="lazy">
-        <img src="images/floorplan-1b.webp" alt="One bedroom floor plan, The Oak Haven, 777 square feet" loading="lazy">
+        <img src="images/floorplan-1a.webp" width="423" height="423" alt="One bedroom floor plan, The Voss, 701 square feet" loading="lazy">
+        <img src="images/floorplan-1b.webp" width="1200" height="1200" alt="One bedroom floor plan, The Oak Haven, 777 square feet" loading="lazy">
       </div>
       <div class="cat-photos">
-        <img src="images/gal-apt-05.webp" alt="Full kitchen with range, refrigerator and ample cabinets" loading="lazy">
-        <img src="images/gal-apt-09.webp" alt="Full bathroom with tub-shower and vanity" loading="lazy">
-        <img src="images/gal-apt-10.webp" alt="Walk-in closet with built-in shelving" loading="lazy">
-        <img src="images/gal-apt-11.webp" alt="Private balcony overlooking mature trees" loading="lazy">
+        <img src="images/gal-apt-05.webp" width="1600" height="1067" alt="Full kitchen with range, refrigerator and ample cabinets" loading="lazy">
+        <img src="images/gal-apt-09.webp" width="1600" height="1067" alt="Full bathroom with tub-shower and vanity" loading="lazy">
+        <img src="images/gal-apt-10.webp" width="1600" height="1067" alt="Walk-in closet with built-in shelving" loading="lazy">
+        <img src="images/gal-apt-11.webp" width="1600" height="1067" alt="Private balcony overlooking mature trees" loading="lazy">
       </div>
       <p class="cat-deal"><b>Move-in special:</b> $50 a month off for your first 12 months &mdash;
         <b>$900/mo</b> instead of $950.</p>
       <p class="cat-note">Interior photos above show the kitchens, baths and closets fitted throughout the
         condos. For a room-by-room look at an actual one-bedroom, take the 3D walkthrough.</p>
       <div class="cat-cta">
-        <a href="tel:+14692189998" class="btn btn-primary">&#128222; Call (469) 218-9998</a>
-        <a href="#tours" class="cat-tourlink" data-tour="pjTXQuYWYcm">&#9654; 3D walkthrough of a one-bedroom</a>
-        <a href="https://api.leadconnectorhq.com/widget/booking/YDRpFX2LBjEQ5szUkTJy" target="_blank" rel="noopener" class="btn btn-dark">Request a Tour</a>
+        <a href="tel:+14692189998" class="btn btn-primary"><span aria-hidden="true">&#128222;</span> Call (469) 218-9998</a>
+        <a href="#tours" class="cat-tourlink" data-tour="pjTXQuYWYcm"><span aria-hidden="true">&#9654;</span> 3D walkthrough of a one-bedroom</a>
+        <a href="https://api.leadconnectorhq.com/widget/booking/YDRpFX2LBjEQ5szUkTJy" target="_blank" rel="noopener" class="btn btn-dark">Request a Tour<span class="sr-only"> (opens in a new tab)</span></a>
       </div>
     </article>
 
@@ -454,25 +484,25 @@
           <h3>Two Bedroom Condo</h3>
           <p class="cat-meta">2 Bed &middot; 1&ndash;2 Bath &middot; 903&ndash;1,064 sq ft &middot; The Summit and The Willow</p>
         </div>
-        <div class="cat-price">From <s>$1,099</s> $999<span>/mo</span></div>
+        <div class="cat-price">From <s><span class="sr-only">Regular price </span>$1,099</s> <span class="sr-only">now </span>$999<span>/mo</span></div>
       </div>
       <div class="cat-plans">
-        <img src="images/floorplan-2a.webp" alt="Two bedroom two bathroom floor plan, The Willow, 1,064 square feet" loading="lazy">
+        <img src="images/floorplan-2a.webp" width="1200" height="1200" alt="Two bedroom two bathroom floor plan, The Willow, 1,064 square feet" loading="lazy">
       </div>
       <div class="cat-photos">
-        <img src="images/gal-apt-01.webp" alt="Open living room with vaulted ceiling and wood-burning fireplace" loading="lazy">
-        <img src="images/gal-apt-04.webp" alt="Kitchen with dark counters and breakfast bar seating" loading="lazy">
-        <img src="images/gal-apt-07.webp" alt="Bedroom with large window and ceiling fan" loading="lazy">
-        <img src="images/gal-apt-06.webp" alt="Kitchen with double sink and dishwasher" loading="lazy">
+        <img src="images/gal-apt-01.webp" width="1600" height="1067" alt="Open living room with vaulted ceiling and wood-burning fireplace" loading="lazy">
+        <img src="images/gal-apt-04.webp" width="1600" height="1067" alt="Kitchen with dark counters and breakfast bar seating" loading="lazy">
+        <img src="images/gal-apt-07.webp" width="1600" height="1067" alt="Bedroom with large window and ceiling fan" loading="lazy">
+        <img src="images/gal-apt-06.webp" width="1600" height="1067" alt="Kitchen with double sink and dishwasher" loading="lazy">
       </div>
       <p class="cat-deal"><b>Move-in special:</b> $100 a month off for your first 12 months &mdash;
         2 Bed &middot; 1 Bath <b>$999/mo</b> instead of $1,099, and 2 Bed &middot; 2 Bath <b>$1,099/mo</b> instead of $1,199.</p>
       <p class="cat-note">Vaulted ceilings, a wood-burning fireplace, a full kitchen with dishwasher, and a
         private balcony. Walk-in closets in both bedrooms.</p>
       <div class="cat-cta">
-        <a href="tel:+14692189998" class="btn btn-primary">&#128222; Call (469) 218-9998</a>
-        <a href="#tours" class="cat-tourlink" data-tour="NC9iRG294Z2">&#9654; 3D walkthrough of a two-bedroom</a>
-        <a href="https://api.leadconnectorhq.com/widget/booking/YDRpFX2LBjEQ5szUkTJy" target="_blank" rel="noopener" class="btn btn-dark">Request a Tour</a>
+        <a href="tel:+14692189998" class="btn btn-primary"><span aria-hidden="true">&#128222;</span> Call (469) 218-9998</a>
+        <a href="#tours" class="cat-tourlink" data-tour="NC9iRG294Z2"><span aria-hidden="true">&#9654;</span> 3D walkthrough of a two-bedroom</a>
+        <a href="https://api.leadconnectorhq.com/widget/booking/YDRpFX2LBjEQ5szUkTJy" target="_blank" rel="noopener" class="btn btn-dark">Request a Tour<span class="sr-only"> (opens in a new tab)</span></a>
       </div>
     </article>
 
@@ -484,23 +514,23 @@
           <h3>Townhomes</h3>
           <p class="cat-meta">2 Bed &middot; 2 Bath &middot; 1,059 sq ft &middot; two storeys &middot; The Belmont Townhouse</p>
         </div>
-        <div class="cat-price"><s>$1,299</s> $1,199<span>/mo</span></div>
+        <div class="cat-price"><s><span class="sr-only">Regular price </span>$1,299</s> <span class="sr-only">now </span>$1,199<span>/mo</span></div>
       </div>
       <div class="cat-plans">
-        <img src="images/floorplan-2b.webp" alt="Two storey townhome floor plan, The Belmont, 1,059 square feet, upstairs and downstairs" loading="lazy">
+        <img src="images/floorplan-2b.webp" width="1560" height="1200" alt="Two storey townhome floor plan, The Belmont, 1,059 square feet, upstairs and downstairs" loading="lazy">
       </div>
       <div class="cat-photos">
-        <img src="images/gal-th-01.webp" alt="Two-storey townhome living room with fireplace and wood-style flooring" loading="lazy">
-        <img src="images/gal-th-04.webp" alt="Carpeted staircase to the townhome upper level" loading="lazy">
-        <img src="images/gal-th-05.webp" alt="Townhome kitchen with range and generous counter space" loading="lazy">
-        <img src="images/gal-th-09.webp" alt="Upstairs bedroom with natural light and en-suite access" loading="lazy">
+        <img src="images/gal-th-01.webp" width="1600" height="1067" alt="Two-storey townhome living room with fireplace and wood-style flooring" loading="lazy">
+        <img src="images/gal-th-04.webp" width="1600" height="1067" alt="Carpeted staircase to the townhome upper level" loading="lazy">
+        <img src="images/gal-th-05.webp" width="1600" height="1067" alt="Townhome kitchen with range and generous counter space" loading="lazy">
+        <img src="images/gal-th-09.webp" width="1600" height="1067" alt="Upstairs bedroom with natural light and en-suite access" loading="lazy">
       </div>
       <p class="cat-deal"><b>Move-in special:</b> $100 a month off for your first 12 months &mdash;
         <b>$1,199/mo</b> instead of $1,299.</p>
       <p class="cat-note">Living, dining and kitchen downstairs with a fireplace and wood-style flooring;
         both bedrooms and both baths upstairs.</p>
       <div class="cat-cta">
-        <a href="tel:+14692189998" class="btn btn-primary">&#128222; Call (469) 218-9998</a>
+        <a href="tel:+14692189998" class="btn btn-primary"><span aria-hidden="true">&#128222;</span> Call (469) 218-9998</a>
         <a href="#gallery" class="btn btn-dark">See all townhome photos</a>
       </div>
     </article>
@@ -508,7 +538,7 @@
 </section>
 
 <!-- 3D WALKTHROUGH TOURS -->
-<section class="tours" id="tours" style="padding:78px 0">
+<section class="tours" id="tours">
   <div class="wrap">
     <p class="eyebrow">3D Walkthrough</p>
     <h2 class="section-title">Walk Through Before You Visit</h2>
@@ -516,32 +546,35 @@
       vaulted ceilings, and get a feel for the space. Pick a floor plan below, then click and drag to explore.</p>
 
     <div class="tour-tabs" role="tablist" aria-label="Choose a floor plan to tour in 3D">
-      <button class="tour-tab" type="button" role="tab" aria-selected="true"
+      <button class="tour-tab" type="button" role="tab" id="tourtab-1bed" aria-controls="tourpanel"
+              aria-selected="true" tabindex="0"
               data-m="pjTXQuYWYcm" data-label="The Oak Haven, 1 bed 1 bath, 777 square feet">One Bedroom &middot; 777 sq ft</button>
-      <button class="tour-tab" type="button" role="tab" aria-selected="false"
+      <button class="tour-tab" type="button" role="tab" id="tourtab-2bed" aria-controls="tourpanel"
+              aria-selected="false" tabindex="-1"
               data-m="NC9iRG294Z2" data-label="The Willow, 2 bed 2 bath, 1,064 square feet">Two Bedroom &middot; 1,064 sq ft</button>
     </div>
 
-    <div class="tour-frame">
+    <div class="tour-frame" id="tourpanel" role="tabpanel" aria-labelledby="tourtab-1bed">
       <iframe id="tourFrame" src="https://my.matterport.com/show/?m=pjTXQuYWYcm&amp;play=1"
               title="3D walkthrough of The Oak Haven, 1 bed 1 bath, 777 square feet"
               loading="lazy" allow="fullscreen; xr-spatial-tracking" allowfullscreen></iframe>
     </div>
 
     <p class="tour-note">Tours show a representative home of each floor plan. Finishes and views vary by unit &mdash;
-      <a href="https://api.leadconnectorhq.com/widget/booking/YDRpFX2LBjEQ5szUkTJy" target="_blank" rel="noopener">request a tour</a> to see the one that is actually available.</p>
+      <a href="https://api.leadconnectorhq.com/widget/booking/YDRpFX2LBjEQ5szUkTJy" target="_blank" rel="noopener">request a tour<span class="sr-only"> (opens in a new tab)</span></a> to see the one that is actually available.</p>
   </div>
 </section>
 
 <!-- AVAILABILITY (Rentvine live listings widget) -->
-<section class="availability" id="availability" style="padding:72px 0;background:var(--cream)">
+<section class="availability" id="availability">
   <div class="wrap">
     <p class="eyebrow">Available Now</p>
     <h2 class="section-title">Current Availability</h2>
-    <p style="color:var(--slate);max-width:60ch;margin-bottom:28px">Homes are listed here as they become available. Don't see the right fit? Call or text
-      <a href="tel:+14692189998" style="color:var(--accent)">(469) 218-9998</a> — we'll tell you what's opening soon and put you on the list.</p>
+    <p class="section-lede">Homes are listed here as they become available. Don't see the right fit? Call or text
+      <a href="tel:+14692189998">(469) 218-9998</a> — we'll tell you what's opening soon and put you on the list.</p>
     <div>
       <div class="rentvine_widget" data-subdomain="excellagroup" data-component="listings"></div>
+      <noscript><p class="section-note">Live listings need JavaScript. Call or text <a href="tel:+14692189998">(469) 218-9998</a> and we'll walk you through what's available.</p></noscript>
     </div>
   </div>
 </section>
@@ -596,7 +629,7 @@
       <button class="gal-item" data-cat="townhomes" type="button" aria-label="Open photo: Vanity with large mirror and modern lighting"><img src="images/gal-th-11.webp" alt="Vanity with large mirror and modern lighting" width="1600" height="1067" loading="lazy" decoding="async"></button>
       <button class="gal-item" data-cat="townhomes" type="button" aria-label="Open photo: Walk-in closet with double hanging rods"><img src="images/gal-th-12.webp" alt="Walk-in closet with double hanging rods" width="1600" height="1067" loading="lazy" decoding="async"></button>
     </div>
-    <p class="gal-count" id="galCount"></p>
+    <p class="gal-count" id="galCount" role="status"></p>
   </div>
 </section>
 
@@ -618,9 +651,9 @@
     <p class="eyebrow">Current Residents</p>
     <h2 class="section-title">Your Online Portal</h2>
     <div class="res-cards">
-      <div class="res-card"><h3>Pay Rent</h3><p>Pay online in seconds and set up autopay in your resident portal. Payment by eCheck is free; card payments carry a processing fee shown before you confirm.</p><a href="https://excellagroup.rentvine.com/portals/resident/" target="_blank" rel="noopener" class="btn btn-primary">Pay Rent</a></div>
-      <div class="res-card"><h3>Maintenance &amp; Requests</h3><p>Submit and track service requests anytime from your portal.</p><a href="https://excellagroup.rentvine.com/portals/resident/" target="_blank" rel="noopener" class="btn btn-dark">Resident Login</a></div>
-      <div class="res-card"><h3>New Resident?</h3><p>We moved to a new resident portal in August 2026. Use the activation link in your invitation email from Excella Group to set your password, then sign in for payments, documents and requests. Need a new invitation? Call or text us.</p><a href="https://excellagroup.rentvine.com/portals/resident/" target="_blank" rel="noopener" class="btn btn-dark">Activate &amp; Sign In</a></div>
+      <div class="res-card"><h3>Pay Rent</h3><p>Pay online in seconds and set up autopay in your resident portal. Payment by eCheck is free; card payments carry a processing fee shown before you confirm.</p><a href="https://excellagroup.rentvine.com/portals/resident/" target="_blank" rel="noopener" class="btn btn-primary">Pay Rent<span class="sr-only"> (opens in a new tab)</span></a></div>
+      <div class="res-card"><h3>Maintenance &amp; Requests</h3><p>Submit and track service requests anytime from your portal.</p><a href="https://excellagroup.rentvine.com/portals/resident/" target="_blank" rel="noopener" class="btn btn-dark">Resident Login<span class="sr-only"> (opens in a new tab)</span></a></div>
+      <div class="res-card"><h3>New Resident?</h3><p>We moved to a new resident portal in August 2026. Use the activation link in your invitation email from Excella Group to set your password, then sign in for payments, documents and requests. Need a new invitation? Call or text us.</p><a href="https://excellagroup.rentvine.com/portals/resident/" target="_blank" rel="noopener" class="btn btn-dark">Activate &amp; Sign In<span class="sr-only"> (opens in a new tab)</span></a></div>
     </div>
   </div>
 </section>
@@ -630,11 +663,11 @@
   <div class="wrap">
     <p class="eyebrow">Plan Your Visit</p>
     <h2 class="section-title">Come See Village Oaks</h2>
-    <p style="color:var(--slate);max-width:660px;margin:6px 0 24px">Two easy ways to visit: <strong>book a tour</strong> instantly on our calendar, or <strong>request a tour</strong> below and we'll reach out to set one up.</p>
-    <a href="https://api.leadconnectorhq.com/widget/booking/YDRpFX2LBjEQ5szUkTJy" target="_blank" rel="noopener" class="btn btn-primary" style="margin-bottom:34px">&#128197; Book a Tour</a>
+    <p class="tour-intro">Two easy ways to visit: <strong>book a tour</strong> instantly on our calendar, or <strong>request a tour</strong> below and we'll reach out to set one up.</p>
+    <a href="https://api.leadconnectorhq.com/widget/booking/YDRpFX2LBjEQ5szUkTJy" target="_blank" rel="noopener" class="btn btn-primary tour-book-cta"><span aria-hidden="true">&#128197;</span> Book a Tour<span class="sr-only"> (opens in a new tab)</span></a>
     <div class="tour-grid">
       <div class="tour-embed">
-        <p class="eyebrow" style="margin-bottom:10px">Request a Tour</p>
+        <p class="eyebrow">Request a Tour</p>
         <iframe
           src="https://api.leadconnectorhq.com/widget/form/lUZeU6QJV2ra91Wh9seH"
           style="width:100%;border:none;border-radius:10px;min-height:840px"
@@ -649,48 +682,51 @@
         </iframe>
         <script src="https://link.msgsndr.com/js/form_embed.js"></script>
       </div>
-      <div class="contact-info">
+      <div class="contact-col">
         <p class="eyebrow">Get in Touch</p>
-        <div class="ci"><div>📍</div><div><b>Address</b>9920 Forest Lane<br>Dallas, TX 75243</div></div>
-        <div class="ci"><div>📞</div><div><b>Call or Text</b><a href="tel:+14692189998">(469) 218-9998</a></div></div>
-        <div class="ci"><div>✉️</div><div><b>Email</b><a href="mailto:villageoaks@excella.group">villageoaks@excella.group</a></div></div>
-        <div class="ci"><div>🕒</div><div><b>Office Hours</b>Mon–Fri, by appointment<br>Schedule a tour anytime above</div></div>
+        <dl class="contact-info">
+          <div class="ci"><dt><span aria-hidden="true">📍</span>Address</dt><dd>9920 Forest Lane<br>Dallas, TX 75243</dd></div>
+          <div class="ci"><dt><span aria-hidden="true">📞</span>Call or Text</dt><dd><a href="tel:+14692189998">(469) 218-9998</a></dd></div>
+          <div class="ci"><dt><span aria-hidden="true">✉️</span>Email</dt><dd><a href="mailto:villageoaks@excella.group">villageoaks@excella.group</a></dd></div>
+          <div class="ci"><dt><span aria-hidden="true">🕒</span>Office Hours</dt><dd>Mon–Fri, by appointment<br>Schedule a tour anytime above</dd></div>
+        </dl>
       </div>
     </div>
   </div>
 </section>
+</main>
 
 <footer>
   <div class="wrap">
     <div class="f-grid">
       <div>
-        <div class="logo">Village <span style="color:var(--accent)">Oaks</span></div>
-        <p style="margin-top:8px;font-size:.9rem">9920 Forest Lane, Dallas, TX 75243<br>(469) 218-9998 · villageoaks@excella.group</p>
-        <p class="eho">⌂ Equal Housing Opportunity</p>
+        <p class="logo">Village <span>Oaks</span></p>
+        <p class="footer-addr">9920 Forest Lane, Dallas, TX 75243<br>(469) 218-9998 · villageoaks@excella.group</p>
+        <p class="eho"><span aria-hidden="true">⌂</span> Equal Housing Opportunity</p>
       </div>
-      <div class="f-links">
+      <nav class="f-links" aria-label="Footer">
         <a href="#floor-plans">Floor Plans</a>
         <a href="#amenities">Amenities</a>
         <a href="#tours">3D Tours</a>
         <a href="#gallery">Gallery</a>
         <a href="#residents">Residents</a>
         <a href="#schedule-a-tour">Contact</a>
-        <a href="https://excellagroup.rentvine.com/portals/resident/" target="_blank" rel="noopener">Resident Login</a>
+        <a href="https://excellagroup.rentvine.com/portals/resident/" target="_blank" rel="noopener">Resident Login<span class="sr-only"> (opens in a new tab)</span></a>
         <a href="/privacy-policy.html">Privacy Policy</a>
         <a href="/terms-of-service.html">Terms of Service</a>
-      </div>
+      </nav>
     </div>
     <div class="copy">© 2026 Village Oaks Apartment Homes (TCVO LLC). All rights reserved.</div>
   </div>
 </footer>
 
-<a href="https://api.leadconnectorhq.com/widget/booking/YDRpFX2LBjEQ5szUkTJy" target="_blank" rel="noopener" class="sticky-cta" aria-label="Request a Tour">&#128197; Request a Tour</a>
+<a href="https://api.leadconnectorhq.com/widget/booking/YDRpFX2LBjEQ5szUkTJy" target="_blank" rel="noopener" class="sticky-cta"><span aria-hidden="true">&#128197;</span> Request a Tour<span class="sr-only"> (opens in a new tab)</span></a>
 
 <!-- Lightbox -->
-<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" aria-labelledby="lbCap">
   <button class="lb-btn lb-close" id="lbClose" type="button" aria-label="Close photo viewer">&times;</button>
   <button class="lb-btn lb-prev" id="lbPrev" type="button" aria-label="Previous photo">&#8249;</button>
-  <img id="lbImg" src="" alt="">
+  <img id="lbImg" alt="">
   <button class="lb-btn lb-next" id="lbNext" type="button" aria-label="Next photo">&#8250;</button>
   <p class="lb-cap" id="lbCap"></p>
 </div>
@@ -707,50 +743,101 @@
   })();
 
   // Mobile menu
-  document.getElementById('hamburger').addEventListener('click', function(){
-    document.getElementById('navLinks').classList.toggle('open');
-  });
-  document.querySelectorAll('#navLinks a').forEach(function(a){
-    a.addEventListener('click', function(){ document.getElementById('navLinks').classList.remove('open'); });
-  });
-
-  // Community drop-down (click / keyboard; hover is CSS)
-  document.querySelectorAll('.nav-dd-btn').forEach(function(btn){
-    btn.addEventListener('click', function(e){
-      e.stopPropagation();
-      var open = btn.parentNode.classList.toggle('open');
-      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-  });
-  document.addEventListener('click', function(){
-    document.querySelectorAll('.nav-dd.open').forEach(function(dd){
-      dd.classList.remove('open');
-      dd.querySelector('.nav-dd-btn').setAttribute('aria-expanded','false');
-    });
-  });
-
-  // Category links that open a specific 3D walkthrough
   (function(){
-    document.querySelectorAll('.cat-tourlink[data-tour]').forEach(function(link){
-      link.addEventListener('click', function(){
-        var want = link.dataset.tour;
-        var tab = document.querySelector('.tour-tab[data-m="' + want + '"]');
-        if(tab && tab.getAttribute('aria-selected') !== 'true') tab.click();
-      });
+    var burger = document.getElementById('hamburger');
+    var links  = document.getElementById('navLinks');
+    if(!burger || !links) return;
+    // The revealed links sit BEFORE the button in the DOM, so Tab alone would skip straight
+    // past them into the page. Move focus in on open and hand it back on close.
+    function setOpen(open){
+      links.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    burger.addEventListener('click', function(){
+      var open = !links.classList.contains('open');
+      setOpen(open);
+      if(open){ var first = links.querySelector('a'); if(first) first.focus(); }
+    });
+    links.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){ setOpen(false); });
+    });
+    links.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && links.classList.contains('open')){ setOpen(false); burger.focus(); }
     });
   })();
 
-  // 3D walkthrough tabs
+  // Community disclosure (click, hover and Escape all keep aria-expanded truthful)
+  (function(){
+    document.querySelectorAll('.nav-dd').forEach(function(dd){
+      var btn = dd.querySelector('.nav-dd-btn');
+      if(!btn) return;
+      function set(open){
+        dd.classList.toggle('open', open);
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      }
+      var suppressHover = false;
+      btn.addEventListener('click', function(e){
+        e.stopPropagation();
+        var open = !dd.classList.contains('open');
+        set(open);
+        // Clicking a menu the pointer already opened must not let mouseenter reopen it.
+        suppressHover = !open;
+      });
+      if(window.matchMedia('(hover:hover)').matches){
+        dd.addEventListener('mouseenter', function(){ if(!suppressHover) set(true); });
+        dd.addEventListener('mouseleave', function(){ set(false); suppressHover = false; });
+      }
+      // 1.4.13 — hover-revealed content must be dismissable without moving the pointer, so
+      // Escape listens on the document; a hovering user has focus nowhere near .nav-dd.
+      document.addEventListener('keydown', function(e){
+        if(e.key !== 'Escape' || !dd.classList.contains('open')) return;
+        var inside = dd.contains(document.activeElement);
+        set(false);
+        suppressHover = true;
+        if(inside) btn.focus();
+      });
+      document.addEventListener('click', function(){ set(false); });
+    });
+  })();
+
+  // 3D walkthrough tabs (roving tabindex + arrow keys, per the ARIA tabs pattern)
   (function(){
     var frame = document.getElementById('tourFrame');
-    if(!frame) return;
-    document.querySelectorAll('.tour-tab').forEach(function(tab){
+    var panel = document.getElementById('tourpanel');
+    if(!frame || !panel) return;
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('.tour-tab'));
+
+    function select(tab, moveFocus){
+      if(!tab) return;
+      tabs.forEach(function(t){
+        var on = (t === tab);
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.tabIndex = on ? 0 : -1;
+      });
+      panel.setAttribute('aria-labelledby', tab.id);
+      frame.src   = 'https://my.matterport.com/show/?m=' + tab.dataset.m + '&play=1';
+      frame.title = '3D walkthrough of ' + tab.dataset.label;
+      if(moveFocus) tab.focus();
+    }
+
+    tabs.forEach(function(tab, i){
       tab.addEventListener('click', function(){
-        if(tab.getAttribute('aria-selected') === 'true') return;
-        document.querySelectorAll('.tour-tab').forEach(function(t){ t.setAttribute('aria-selected','false'); });
-        tab.setAttribute('aria-selected','true');
-        frame.src = 'https://my.matterport.com/show/?m=' + tab.dataset.m + '&play=1';
-        frame.title = '3D walkthrough of ' + tab.dataset.label;
+        if(tab.getAttribute('aria-selected') !== 'true') select(tab, false);
+      });
+      tab.addEventListener('keydown', function(e){
+        var to = null;
+        if(e.key === 'ArrowRight') to = tabs[(i + 1) % tabs.length];
+        else if(e.key === 'ArrowLeft') to = tabs[(i - 1 + tabs.length) % tabs.length];
+        else if(e.key === 'Home') to = tabs[0];
+        else if(e.key === 'End') to = tabs[tabs.length - 1];
+        if(to){ e.preventDefault(); select(to, true); }
+      });
+    });
+
+    // Per-plan "3D walkthrough of a…" links select the matching tab
+    document.querySelectorAll('.cat-tourlink[data-tour]').forEach(function(link){
+      link.addEventListener('click', function(){
+        select(document.querySelector('.tour-tab[data-m="' + link.dataset.tour + '"]'), false);
       });
     });
   })();
@@ -766,6 +853,22 @@
     var lbC = document.getElementById('lbCap');
     var visible = items.slice();
     var at = 0, lastFocus = null;
+
+    var outside = ['header','main','footer','.sticky-cta'];
+    function setOutsideInert(on){
+      outside.forEach(function(sel){
+        document.querySelectorAll(sel).forEach(function(el){
+          if(on) el.setAttribute('inert',''); else el.removeAttribute('inert');
+        });
+      });
+    }
+    function trap(e){
+      if(e.key !== 'Tab') return;
+      var f = lb.querySelectorAll('button');
+      var first = f[0], last = f[f.length - 1];
+      if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+      else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+    }
 
     function applyFilter(cat){
       visible = [];
@@ -799,12 +902,14 @@
       show(i);
       lb.classList.add('open');
       document.body.style.overflow = 'hidden';
+      setOutsideInert(true);
       document.getElementById('lbClose').focus();
     }
     function closeLb(){
       lb.classList.remove('open');
-      lbI.src = '';
+      lbI.removeAttribute('src');
       document.body.style.overflow = '';
+      setOutsideInert(false);
       if(lastFocus) lastFocus.focus();
     }
 
@@ -817,6 +922,7 @@
     lb.addEventListener('click', function(e){ if(e.target === lb) closeLb(); });
     document.addEventListener('keydown', function(e){
       if(!lb.classList.contains('open')) return;
+      trap(e);
       if(e.key === 'Escape') closeLb();
       else if(e.key === 'ArrowLeft') show(at - 1);
       else if(e.key === 'ArrowRight') show(at + 1);
